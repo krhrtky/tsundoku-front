@@ -1,6 +1,7 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import React from 'react';
 
-const Home = () => (
+const Home: React.FC = () => (
   <div className="container">
     <Head>
       <title>Create Next App</title>
@@ -198,6 +199,6 @@ const Home = () => (
       }
     `}</style>
   </div>
-)
+);
 
-export default Home
+export default Home;
