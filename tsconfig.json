@@ -11,7 +11,8 @@
     ],
     "types": [
       "react",
-      "jest"
+      "jest",
+      "styled-components"
     ],
     "baseUrl": "./",
     "paths": {

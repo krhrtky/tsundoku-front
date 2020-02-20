@@ -1,1 +1,1 @@
-export { Menu } from '@material-ui/icons';
+export { Menu, Home } from '@material-ui/icons';

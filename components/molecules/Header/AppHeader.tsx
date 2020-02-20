@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -7,6 +7,7 @@ import {
 } from '@/atoms/UI';
 import { Menu as MenuIcon } from '@/atoms/Icon';
 import styled from 'styled-components';
+import { SideMenu } from '@/molecules/Menu/SideMenu';
 
 const IconButton = styled(IB)`
   flexgrow: 1;
@@ -20,13 +21,21 @@ type Props = {
   pathName: string;
 };
 
-export const AppHeader: React.FC<Props> = ({ pathName }) => (
-  <AppBar position="static">
-    <Toolbar>
-      <IconButton edge="start" color="inherit" aria-label="menu">
-        <MenuIcon />
-      </IconButton>
-      <Typography variant="h6">{pathName}</Typography>
-    </Toolbar>
-  </AppBar>
-);
+export const AppHeader: React.FC<Props> = ({ pathName }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon onClick={(): void => setMenuOpen(true)} />
+          </IconButton>
+          <Typography variant="h6">{pathName}</Typography>
+        </Toolbar>
+        <div onClick={(): void => setMenuOpen(false)}>
+          <SideMenu open={menuOpen} />
+        </div>
+      </AppBar>
+    </>
+  );
+};
