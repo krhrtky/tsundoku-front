@@ -11,7 +11,9 @@ export const SideMenu: React.FC<Props> = ({ open }) => (
   <Drawer anchor="left" open={open}>
     <List>
       <Link href="/">
-        <ListItem style={{ width: 200, textDecoration: 'none', cursor: 'pointer' }}>
+        <ListItem
+          style={{ width: 200, textDecoration: 'none', cursor: 'pointer' }}
+        >
           <Home />
           Home
         </ListItem>

@@ -21,15 +21,17 @@ type Props = {
   pathName: string;
 };
 
-export const AppHeader: React.FC<Props> = ({ pathName }) => {
+export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon onClick={(): void => setMenuOpen(true)} />
-          </IconButton>
+          <div onClick={(): void => setMenuOpen(true)}>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+          </div>
           <Typography variant="h6">{pathName}</Typography>
         </Toolbar>
         <div onClick={(): void => setMenuOpen(false)}>
