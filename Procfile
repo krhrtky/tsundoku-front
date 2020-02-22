@@ -1,1 +1,1 @@
-web: yarn install && yarn build && yarn start -p $PORT
+web: yarn start -p $PORT
