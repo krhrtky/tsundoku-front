@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
   AppBar,
-  Toolbar,
   IconButton as IB,
+  Toolbar,
   Typography as Typo
-} from '@/atoms/UI';
-import { Menu as MenuIcon } from '@/atoms/Icon';
+} from '@/components/atoms/UI';
+import { Menu as MenuIcon } from '@/components/atoms/Icon';
 import styled from 'styled-components';
-import { SideMenu } from '@/molecules/Menu/SideMenu';
+import { SideMenu } from '@/components/molecules/Menu/SideMenu';
 
 const IconButton = styled(IB)`
   flexgrow: 1;
