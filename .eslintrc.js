@@ -5,24 +5,28 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
-    "plugin:react/recommended"
+    'plugin:react/recommended',
   ],
-  plugins: [
-      'react',
-      '@typescript-eslint'
-  ],
+  plugins: ['react', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   env: { node: true, es6: true },
   parserOptions: {
     sourceType: 'module',
-    "ecmaFeatures": {
-      "jsx": true  // react用
-    }
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
     semi: ['error', 'always'],
     'prettier/prettier': ['error', { singleQuote: true, semi: true }],
-    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
-    'react/prop-types': 'off'
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'react/prop-types': 'off',
   },
+  settings: {
+    react: {
+      createClass: "createReactClass",
+      pragma: "React",
+      version: "16.12",
+    },
+  }
 };

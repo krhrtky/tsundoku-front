@@ -2391,6 +2391,11 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@types/zeit__next-source-maps@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@types/zeit__next-source-maps/-/zeit__next-source-maps-0.0.1.tgz#f59437d79c80cd9e627f8350542f6c5ceff7ed3a"
+  integrity sha512-CQOL/aGanpS3sFZaCtX1XDUFC4Ng/YEz7WtCzHwlfAUm+YnBGq3a+c3QzRE36mCSQqpGsJpWy45ijIWCK2foFw==
+
 "@typescript-eslint/eslint-plugin@^2.20.0":
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.20.0.tgz#a522d0e1e4898f7c9c6a8e1ed3579b60867693fa"
