@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Layout } from '@/Layout';
+import { Layout } from '@/components/Layout';
 
 const Home: React.FC = () => (
   <Layout>

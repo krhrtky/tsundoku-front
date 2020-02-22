@@ -1,6 +1,6 @@
 import React from 'react';
-import { Drawer, List, ListItem } from '@/atoms/UI';
-import { Home } from '@/atoms/Icon';
+import { Drawer, List, ListItem } from '@/components/atoms/UI';
+import { Home } from '@/components/atoms/Icon';
 import Link from 'next/link';
 
 type Props = {

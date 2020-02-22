@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AppHeader } from '@/molecules/Header';
+import { AppHeader } from '@/components/molecules/Header';
 
 export const Layout: React.FC = props => {
   const router = useRouter();
