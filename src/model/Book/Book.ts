@@ -3,6 +3,8 @@ import { Name } from './Name';
 import { Link } from './Link';
 import { Status } from './Status';
 import { Type } from './Type';
+import { ReadedPage } from '../History/ReadedPage';
+import { History } from '../History/History';
 
 export class Book {
   readonly id: Id;
@@ -36,5 +38,9 @@ export class Book {
 
   readOver(): Book {
     return new Book(this.name, Status.Over, this.type, this.link);
+  }
+
+  read(readedPage: ReadedPage): History {
+    return History.create(this.id, readedPage);
   }
 }
