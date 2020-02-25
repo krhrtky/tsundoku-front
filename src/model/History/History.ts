@@ -5,7 +5,7 @@ import { ReadDateTime } from './ReadDateTime';
 import { DateTime } from '@/libs/DateTime';
 
 export class History {
-  readonly id: Id;
+  readonly id?: Id;
   readonly bookId: BookId;
   readonly readedPage: ReadedPage;
   readonly readDateTime: ReadDateTime;
