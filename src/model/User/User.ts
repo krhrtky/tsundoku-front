@@ -1,7 +1,7 @@
-import { Id } from './Id';
-import { Type } from './Type';
-import { Email } from './Email';
 import { UUID } from '@/libs/UUID';
+import { Id } from './vo//Id';
+import { Type } from './vo//Type';
+import { Email } from './vo//Email';
 
 export class User {
   readonly id: Id;
