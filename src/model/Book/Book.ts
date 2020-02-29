@@ -1,11 +1,11 @@
-import { Id } from './Id';
-import { Name } from './Name';
-import { Link } from './Link';
-import { Status } from './Status';
-import { Type } from './Type';
+import { History } from '@/model/History';
+import { Id as UserId } from '@/model/User';
+import { Id } from './vo//Id';
+import { Name } from './vo//Name';
+import { Link } from './vo//Link';
+import { Status } from './vo//Status';
+import { Type } from './vo//Type';
 import { ReadedPage } from '../History/ReadedPage';
-import { History } from '../History/History';
-import { Id as UserId } from '../User/Id';
 
 export class Book {
   readonly id?: Id;

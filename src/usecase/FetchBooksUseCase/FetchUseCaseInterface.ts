@@ -1,6 +1,6 @@
-import { Id } from '@/model/Book/Id';
+import { Id } from '@/model/Book';
 
-type Books = Array<{
+export type Books = Array<{
   name: string;
   status: string;
   type: string;
@@ -8,6 +8,6 @@ type Books = Array<{
   userId: string;
 }>;
 
-export type IFetchUseCase = {
+export interface FetchUseCaseInterface {
   fetchByUser: (userId: Id) => Books;
-};
+}
