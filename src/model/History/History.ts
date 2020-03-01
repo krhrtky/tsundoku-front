@@ -1,5 +1,5 @@
 import { Id } from './Id';
-import { Id as BookId } from '../Book/Id';
+import { Id as BookId } from '@/model/Book';
 import { ReadedPage } from './ReadedPage';
 import { ReadDateTime } from './ReadDateTime';
 import { DateTime } from '@/libs/DateTime';
