@@ -12,7 +12,8 @@
     "types": [
       "react",
       "jest",
-      "styled-components"
+      "styled-components",
+      "material-ui"
     ],
     "baseUrl": "./",
     "paths": {

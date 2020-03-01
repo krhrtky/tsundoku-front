@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+
 module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
@@ -6,6 +8,10 @@ module.exports = ({ config }) => {
       presets: [require.resolve('babel-preset-react-app')],
     },
   });
+
+  config.resolve.alias = {
+    '@': resolve(__dirname, '../src'),
+  };
 
   config.resolve.extensions.push('.ts', '.tsx');
   return config;

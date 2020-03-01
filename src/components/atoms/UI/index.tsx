@@ -5,5 +5,7 @@ export {
   Typography,
   List,
   ListItem,
-  Drawer
+  Drawer,
+  TextField,
+  Button
 } from '@material-ui/core';
