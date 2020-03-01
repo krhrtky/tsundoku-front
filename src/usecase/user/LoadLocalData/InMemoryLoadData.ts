@@ -13,12 +13,14 @@ export class InMemoryLoadData implements LoadLocalData {
       inMemoryUserRepository.getByLocalStorage(),
       getOrElse(() => {
         const visitor = User.visitor();
-        return {
+        const data = {
           id: visitor.id.value,
-          name: 'visitor',
-          email: '',
-          type: 'visitor'
+          name: visitor.name.value,
+          email: visitor.email.value,
+          type: visitor.type.toString()
         };
+        inMemoryUserRepository.save(data);
+        return data;
       })
     );
   }

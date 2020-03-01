@@ -18,7 +18,7 @@ export class User {
     return new User(
       new Id(UUID.timeStamp()),
       new Email(''),
-      new Name(''),
+      new Name('visitor'),
       Type.Visitor
     );
   }

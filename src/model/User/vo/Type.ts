@@ -1,5 +1,5 @@
 export enum Type {
-  Visitor,
-  General,
-  Admin
+  Visitor = 'Visitor',
+  General = 'General',
+  Admin = 'Admin'
 }

@@ -6,7 +6,7 @@ const injectLocalStorage: (newStorage: Storage) => void = newStorage =>
   (localStorage = newStorage);
 
 const getLocalStorage: () => Storage = () =>
-  localStorage == null ? createLocalStorage({ mode: 'memory' }) : localStorage;
+  localStorage == null ? createLocalStorage({ mode: 'auto' }) : localStorage;
 
 export const LocalStorage = {
   injectLocalStorage,
