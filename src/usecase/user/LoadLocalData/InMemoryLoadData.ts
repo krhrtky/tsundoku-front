@@ -1,5 +1,5 @@
-import { pipe } from 'fp-ts/es6/pipeable';
-import { getOrElse } from 'fp-ts/es6/Option';
+import { pipe } from 'fp-ts/lib/pipeable';
+import { getOrElse } from 'fp-ts/lib/Option';
 import { LoadLocalData } from '@/usecase/user/LoadLocalData/LoadLocalData';
 import { LoadLocalDataOutPutData } from '@/usecase/user/LoadLocalData/LoadLocalDataOutPutData';
 import { InMemoryUserRepository } from '@/model/User/InMemoryUserRepository';
