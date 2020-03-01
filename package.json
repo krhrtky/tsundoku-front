@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint src/**/*.ts* pages/**/*.ts*"
   },
   "engines": {
     "node": "12.16.1"
@@ -16,6 +17,7 @@
     "@zeit/next-source-maps": "^0.0.3",
     "dayjs": "^1.8.20",
     "fp-ts": "^2.5.1",
+    "localstorage-ponyfill": "^1.0.2",
     "next": "9.2.2",
     "ramda": "^0.27.0",
     "react": "16.12.0",

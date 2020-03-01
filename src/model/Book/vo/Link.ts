@@ -1,5 +1,5 @@
 export class Link {
-  private value;
+  readonly value: string;
   constructor(value: string) {
     this.value = value;
   }
