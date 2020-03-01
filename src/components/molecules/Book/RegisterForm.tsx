@@ -50,7 +50,7 @@ export const RegisterForm: React.FC = () => {
         <TextField
           error={errors.link != null}
           id="link"
-          label="link"
+          label="Link"
           defaultValue={values.link}
           helperText={errors.link}
         />
