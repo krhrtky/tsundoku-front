@@ -7,5 +7,12 @@ export {
   ListItem,
   Drawer,
   TextField,
-  Button
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
 } from '@material-ui/core';
