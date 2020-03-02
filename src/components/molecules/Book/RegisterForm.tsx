@@ -3,6 +3,10 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField, Button } from '@/components/atoms/UI';
 
+// type Props = {
+//
+// }
+
 const initialValues = {
   name: '',
   type: '',
@@ -16,15 +20,13 @@ const validationSchema = yup.object({
 });
 
 export const RegisterForm: React.FC = () => {
-  const { values, handleSubmit, errors } = useFormik({
+  const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     onSubmit: values => {
       console.log(values);
     },
     validationSchema
   });
-
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,8 +35,9 @@ export const RegisterForm: React.FC = () => {
           error={errors.name != null}
           id="name"
           label="Name"
-          defaultValue={values.name}
+          value={values.name}
           helperText={errors.name}
+          onChange={handleChange}
         />
       </div>
       <div>
@@ -42,8 +45,9 @@ export const RegisterForm: React.FC = () => {
           error={errors.type != null}
           id="type"
           label="Type"
-          defaultValue={values.type}
+          value={values.type}
           helperText={errors.type}
+          onChange={handleChange}
         />
       </div>
       <div>
@@ -51,8 +55,9 @@ export const RegisterForm: React.FC = () => {
           error={errors.link != null}
           id="link"
           label="Link"
-          defaultValue={values.link}
+          value={values.link}
           helperText={errors.link}
+          onChange={handleChange}
         />
       </div>
       <Button type="submit" variant="contained" color="primary">
