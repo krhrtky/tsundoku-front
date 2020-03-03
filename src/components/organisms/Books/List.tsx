@@ -17,7 +17,7 @@ type Props = {
 export const List: React.FC<Props> = ({ rows }: Props) => {
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell align="center">Name</TableCell>
@@ -28,7 +28,7 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.id}>
+            <TableRow hover key={row.id}>
               <TableCell align="left">{row.name}</TableCell>
               <TableCell align="left">{row.status}</TableCell>
               <TableCell align="left">{row.type}</TableCell>
