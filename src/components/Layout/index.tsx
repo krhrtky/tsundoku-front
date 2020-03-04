@@ -4,11 +4,14 @@ import { AppHeader } from '@/components/molecules/Header';
 
 export const Layout: React.FC = props => {
   const router = useRouter();
-  const pathname =
+  const pathName =
     router.pathname === '/' ? 'Home' : router.pathname.replace(/\//, '');
   return (
     <div>
-      <AppHeader pathName={pathname} />
+      <AppHeader
+        pathName={pathName}
+        register={(): void => console.log('regster')}
+      />
       {props.children}
     </div>
   );
