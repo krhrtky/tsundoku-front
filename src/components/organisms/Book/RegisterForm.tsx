@@ -1,8 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { TextField, Button } from '@/components/atoms/UI';
-import { DialogActions } from '@material-ui/core';
+import { TextField, Button, DialogActions } from '@/components/atoms/UI';
 
 const initialValues = {
   name: '',
