@@ -24,5 +24,6 @@ export {
   DialogContentText,
   Box,
   Grid,
-  FormControl
+  FormControl,
+  DialogActions
 } from '@material-ui/core';
