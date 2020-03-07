@@ -2,10 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField, Button } from '@/components/atoms/UI';
-
-// type Props = {
-//
-// }
+import { DialogActions } from '@material-ui/core';
 
 const initialValues = {
   name: '',
@@ -32,6 +29,7 @@ export const RegisterForm: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <TextField
+          fullWidth={true}
           error={errors.name != null}
           id="name"
           label="Name"
@@ -42,6 +40,7 @@ export const RegisterForm: React.FC = () => {
       </div>
       <div>
         <TextField
+          fullWidth={true}
           error={errors.type != null}
           id="type"
           label="Type"
@@ -52,6 +51,7 @@ export const RegisterForm: React.FC = () => {
       </div>
       <div>
         <TextField
+          fullWidth={true}
           error={errors.link != null}
           id="link"
           label="Link"
@@ -60,9 +60,11 @@ export const RegisterForm: React.FC = () => {
           onChange={handleChange}
         />
       </div>
-      <Button type="submit" variant="contained" color="primary">
-        Submit
-      </Button>
+      <DialogActions>
+        <Button type="submit" variant="contained" color="primary">
+          Register
+        </Button>
+      </DialogActions>
     </form>
   );
 };

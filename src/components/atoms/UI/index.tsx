@@ -14,5 +14,15 @@ export {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  Modal,
+  Backdrop,
+  Fade,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  Box,
+  Grid,
+  FormControl
 } from '@material-ui/core';

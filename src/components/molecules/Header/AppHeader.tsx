@@ -5,9 +5,10 @@ import {
   Toolbar,
   Typography as Typo
 } from '@/components/atoms/UI';
-import { Menu as MenuIcon, AddCircleOutline } from '@/components/atoms/Icon';
+import { Menu as MenuIcon } from '@/components/atoms/Icon';
 import styled from 'styled-components';
 import { SideMenu } from '@/components/molecules/Menu/SideMenu';
+import { RegisterModal } from '@/components/organisms/Book/RegisterModal';
 
 const Typography = styled(Typo)`
   flex-grow: 1;
@@ -31,7 +32,7 @@ export const AppHeader: React.FC<Props> = ({ pathName, register }: Props) => {
           </div>
           <Typography variant="h6">{pathName}</Typography>
           <div onClick={register}>
-            <AddCircleOutline />
+            <RegisterModal />
           </div>
         </Toolbar>
         <div onClick={(): void => setMenuOpen(false)}>
