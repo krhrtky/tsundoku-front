@@ -1,4 +1,5 @@
 import { createLocalStorage } from 'localstorage-ponyfill';
+import { isServer } from '@/libs/Env';
 
 let localStorage: Storage | undefined = undefined;
 let serverInMemory: Storage | undefined = undefined;
@@ -14,11 +15,11 @@ const getLocalStorage: () => Storage = () =>
 
 const getServerInMemory: () => Storage = () =>
   serverInMemory == null
-    ? createLocalStorage({ mode: 'node' })
+    ? createLocalStorage({ mode: 'memory' })
     : serverInMemory;
 
 const getStorage: () => Storage = () =>
-  typeof window === 'undefined' ? getServerInMemory() : getLocalStorage();
+  isServer() ? getServerInMemory() : getLocalStorage();
 
 export const LocalStorage = {
   injectLocalStorage,
