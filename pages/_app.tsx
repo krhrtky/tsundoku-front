@@ -2,7 +2,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { Layout } from '@/components/Layout';
 
-function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
+function App({ Component, pageProps }: AppProps): React.ReactElement {
   return (
     <Layout>
       <Component {...pageProps} />
@@ -10,4 +10,4 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
   );
 }
 
-export default MyApp;
+export default App;

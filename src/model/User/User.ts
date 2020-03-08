@@ -17,8 +17,8 @@ export class User {
   static visitor(): User {
     return new User(
       new Id(UUID.timeStamp()),
-      new Email(''),
       new Name('visitor'),
+      new Email(''),
       Type.Visitor
     );
   }
