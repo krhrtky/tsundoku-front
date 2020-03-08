@@ -5,17 +5,17 @@ import { UserRepository } from '@/model/User/UserRepository';
 import { LoadLocalDataOutPutData } from '@/usecase/user/LoadLocalData/LoadLocalDataOutPutData';
 
 const USER_KEY = 'user';
-const localStorage: Storage = LocalStorage.getLocalStorage();
 
 export class InMemoryUserRepository implements UserRepository {
+  private readonly localStorage: Storage = LocalStorage.getStorage();
   getByLocalStorage(): Option<LoadLocalDataOutPutData> {
     return pipe(
-      localStorage.getItem(USER_KEY),
+      this.localStorage.getItem(USER_KEY),
       fromNullable,
       map(userStr => JSON.parse(userStr) as LoadLocalDataOutPutData)
     );
   }
   save(user: LoadLocalDataOutPutData): void {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    this.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 }
