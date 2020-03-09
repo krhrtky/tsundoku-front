@@ -1,14 +1,11 @@
 import { History } from '@/model/History';
 import { Id as UserId } from '@/model/User';
-import { Id } from './vo//Id';
-import { Name } from './vo//Name';
-import { Link } from './vo//Link';
-import { Status } from './vo//Status';
-import { Type } from './vo//Type';
+import { Id, Name, Link, Status, Type } from './vo';
 import { ReadedPage } from '../History/ReadedPage';
+import { UUID } from '@/libs/UUID';
 
 export class Book {
-  readonly id?: Id;
+  readonly id: Id;
   readonly name: Name;
   readonly status: Status;
   readonly type: Type;
@@ -16,12 +13,14 @@ export class Book {
   readonly userId: UserId;
 
   private constructor(
+    id: Id,
     name: Name,
     status: Status,
     type: Type,
     link: Link,
     userId: UserId
   ) {
+    this.id = id;
     this.name = name;
     this.status = status;
     this.type = type;
@@ -30,15 +29,30 @@ export class Book {
   }
 
   static stock(name: Name, type: Type, link: Link, userId: UserId): Book {
-    return new Book(name, Status.Stock, type, link, userId);
+    return new Book(
+      new Id(UUID.random()),
+      name,
+      Status.Stock,
+      type,
+      link,
+      userId
+    );
   }
 
   static buy(name: Name, type: Type, link: Link, userId: UserId): Book {
-    return new Book(name, Status.Bought, type, link, userId);
+    return new Book(
+      new Id(UUID.random()),
+      name,
+      Status.Bought,
+      type,
+      link,
+      userId
+    );
   }
 
   buy(): Book {
     return new Book(
+      this.id,
       this.name,
       Status.Bought,
       this.type,
@@ -49,6 +63,7 @@ export class Book {
 
   startReading(): Book {
     return new Book(
+      this.id,
       this.name,
       Status.Reading,
       this.type,
@@ -58,13 +73,17 @@ export class Book {
   }
 
   readOver(): Book {
-    return new Book(this.name, Status.Over, this.type, this.link, this.userId);
+    return new Book(
+      this.id,
+      this.name,
+      Status.Over,
+      this.type,
+      this.link,
+      this.userId
+    );
   }
 
   read(readedPage: ReadedPage): History {
-    if (this.id == null) {
-      throw new Error(`Book[${this.name}] is not registered`);
-    }
     return History.create(this.id, readedPage);
   }
 }

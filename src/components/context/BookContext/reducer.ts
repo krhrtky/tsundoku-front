@@ -2,20 +2,13 @@ import { Books } from '@/model/Book/Books';
 import { Book } from '@/model/Book';
 import { useReducer } from 'react';
 
-type State = {
+export type State = {
   books: Books;
 };
 
 type Register = 'Register';
 type Delete = 'Delete';
 type Update = 'Update';
-
-// const register = (book: Book) => ({
-//   type: 'Register',
-//   payload: {
-//     book
-//   }
-// });
 
 type RegisterAction = {
   type: Register;
@@ -64,13 +57,13 @@ const reducer = (state: State, action: Action): State => {
 
 type Dispatch = (book: Book) => void;
 
-type ActionType = {
+export type ActionType = {
   register: Dispatch;
   delete: Dispatch;
   update: Dispatch;
 };
 
-export const userBooks = (): [State, ActionType] => {
+export const useBooks = (): [State, ActionType] => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return [

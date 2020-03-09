@@ -1,2 +1,2 @@
 export { Book } from './Book';
-export { Id } from './vo';
+export { Id, Name, Type, Status, Link } from './vo';
