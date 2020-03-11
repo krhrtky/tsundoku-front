@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { TextField, Button, DialogActions } from '@/components/atoms/UI';
+import { useBooksContext } from '@/components/context';
+import { Book, Link, Name, Type } from '@/model/Book';
+import { Id } from '@/model/User';
 
 const initialValues = {
   name: '',
@@ -16,10 +19,20 @@ const validationSchema = yup.object({
 });
 
 export const RegisterForm: React.FC = () => {
+  const [BookContext] = useBooksContext();
+  const { action } = useContext(BookContext);
+
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     onSubmit: values => {
-      console.log(values);
+      action.register(
+        Book.stock(
+          new Name(values.name),
+          Type.Kindle,
+          new Link(values.link),
+          new Id('')
+        )
+      );
     },
     validationSchema
   });

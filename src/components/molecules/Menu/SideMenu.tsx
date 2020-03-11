@@ -18,6 +18,14 @@ export const SideMenu: React.FC<Props> = ({ open }) => (
           Home
         </ListItem>
       </Link>
+      <Link href="/books">
+        <ListItem
+          style={{ width: 200, textDecoration: 'none', cursor: 'pointer' }}
+        >
+          <Home />
+          Books
+        </ListItem>
+      </Link>
     </List>
   </Drawer>
 );
