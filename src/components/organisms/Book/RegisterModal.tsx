@@ -1,9 +1,13 @@
 import React from 'react';
 import { useModal } from '@/components/hooks/useModal';
 import { AddCircleOutline } from '@/components/atoms/Icon';
-import { Dialog, DialogContent, Grid } from '@/components/atoms/UI';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Grid
+} from '@/components/atoms/UI';
 import { RegisterForm } from './RegisterForm';
-import { DialogTitle } from '@material-ui/core';
 
 export const RegisterModal: React.FC = () => {
   const [isOpen, modal] = useModal();
@@ -18,7 +22,7 @@ export const RegisterModal: React.FC = () => {
         <DialogContent>
           <Grid container alignItems="center" justify="center">
             <Grid item xs={8}>
-              <RegisterForm />
+              <RegisterForm submitCallback={modal.close} />
             </Grid>
           </Grid>
         </DialogContent>

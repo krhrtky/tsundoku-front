@@ -1,12 +1,17 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import { Layout } from '@/components/Layout';
+import { useBooksProvider } from '@/components/context';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
+  const BookProvider = useBooksProvider();
+
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <BookProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </BookProvider>
   );
 }
 

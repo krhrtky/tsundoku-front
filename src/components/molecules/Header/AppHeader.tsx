@@ -16,10 +16,9 @@ const Typography = styled(Typo)`
 
 type Props = {
   pathName: string;
-  register: () => void;
 };
 
-export const AppHeader: React.FC<Props> = ({ pathName, register }: Props) => {
+export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div>
@@ -31,9 +30,7 @@ export const AppHeader: React.FC<Props> = ({ pathName, register }: Props) => {
             </IconButton>
           </div>
           <Typography variant="h6">{pathName}</Typography>
-          <div onClick={register}>
-            <RegisterModal />
-          </div>
+          <RegisterModal />
         </Toolbar>
         <div onClick={(): void => setMenuOpen(false)}>
           <SideMenu open={menuOpen} />

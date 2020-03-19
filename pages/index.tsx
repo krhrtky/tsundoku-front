@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import Head from 'next/head';
 import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
 const inMemoryLoadData = new InMemoryLoadData();
 
-const Home: React.FC = () => {
+const Home: ComponentType = () => {
   const user = inMemoryLoadData.handle();
 
   return (
