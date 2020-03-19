@@ -1,9 +1,16 @@
-import { Books } from '@/model/Book/Books';
-import { Book } from '@/model/Book';
 import { useReducer } from 'react';
 
+export type Item = {
+  id: string;
+  name: string;
+  status: string;
+  type: string;
+  link: string;
+  userId: string;
+};
+
 export type State = {
-  books: Books;
+  books: Array<Item>;
 };
 
 type Register = 'Register';
@@ -13,49 +20,50 @@ type Update = 'Update';
 type RegisterAction = {
   type: Register;
   payload: {
-    book: Book;
+    book: Item;
   };
 };
 
 type DeleteAction = {
   type: Delete;
   payload: {
-    book: Book;
+    book: Item;
   };
 };
 
 type UpdateAction = {
   type: Update;
   payload: {
-    book: Book;
+    book: Item;
   };
 };
 
 type Action = RegisterAction | DeleteAction | UpdateAction;
 
 const initialState: State = {
-  books: Books.empty()
+  books: []
 };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'Register':
-      state.books = state.books.add(action.payload.book);
-      return state;
+      return { books: state.books.concat(action.payload.book) };
     case 'Delete':
-      state.books = state.books.pop(action.payload.book);
-      return state;
+      return {
+        books: state.books.filter(book => book.id === action.payload.book.id)
+      };
     case 'Update':
-      state.books = state.books
-        .pop(action.payload.book)
-        .add(action.payload.book);
-      return state;
+      return {
+        books: state.books
+          .filter(book => book.id === action.payload.book.id)
+          .concat([action.payload.book])
+      };
     default:
       throw new Error(`unexpected ActionType: ${action}`);
   }
 };
 
-type Dispatch = (book: Book) => void;
+type Dispatch = (book: Item) => void;
 
 export type ActionType = {
   register: Dispatch;
@@ -63,17 +71,20 @@ export type ActionType = {
   update: Dispatch;
 };
 
-export const useBooks = (): [State, ActionType] => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const useBooks = (injects?: State): [State, ActionType] => {
+  const [state, dispatch] = useReducer(
+    reducer,
+    injects === null || injects === undefined ? initialState : injects
+  );
 
   return [
     state,
     {
-      register: (book: Book): void =>
+      register: (book: Item): void =>
         dispatch({ type: 'Register', payload: { book } }),
-      delete: (book: Book): void =>
+      delete: (book: Item): void =>
         dispatch({ type: 'Delete', payload: { book } }),
-      update: (book: Book): void =>
+      update: (book: Item): void =>
         dispatch({ type: 'Update', payload: { book } })
     }
   ];

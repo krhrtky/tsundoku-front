@@ -1,14 +1,10 @@
-import React, { useContext } from 'react';
+import React, { ComponentType } from 'react';
 import Head from 'next/head';
 import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
-import { useBooksContext } from '@/components/context';
 const inMemoryLoadData = new InMemoryLoadData();
 
-const Home: React.FC = () => {
+const Home: ComponentType = () => {
   const user = inMemoryLoadData.handle();
-  const [BookContext] = useBooksContext();
-  const { state } = useContext(BookContext);
-  console.log(state)
 
   return (
     <div className="container">
@@ -23,7 +19,6 @@ const Home: React.FC = () => {
         </h1>
 
         <p className="description">{JSON.stringify(user)}</p>
-        <div>{state.books.list.map(book => JSON.stringify(book))}</div>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">

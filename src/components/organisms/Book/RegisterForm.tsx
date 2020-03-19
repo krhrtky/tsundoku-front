@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { TextField, Button, DialogActions } from '@/components/atoms/UI';
-import { useBooksContext } from '@/components/context';
-import { Book, Link, Name, Type } from '@/model/Book';
-import { Id } from '@/model/User';
+import { fold } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/pipeable';
+import { Button, DialogActions, TextField } from '@/components/atoms/UI';
+import { ImMemoryRegister } from '@/usecase/book/Register';
 
 const initialValues = {
   name: '',
@@ -18,19 +18,33 @@ const validationSchema = yup.object({
   link: yup.string().notRequired()
 });
 
-export const RegisterForm: React.FC = () => {
-  const [BookContext] = useBooksContext();
-  const { action } = useContext(BookContext);
+export type Props = {
+  submitCallback?: (() => void) | null;
+};
 
+export const RegisterForm: React.FC<Props> = ({
+  submitCallback = null
+}: Props) => {
+  const register = new ImMemoryRegister();
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     onSubmit: values => {
-      action.register(
-        Book.stock(
-          new Name(values.name),
-          Type.Kindle,
-          new Link(values.link),
-          new Id('')
+      pipe(
+        register.execute({
+          name: values.name,
+          status: 'stock',
+          type: 'kidle',
+          link: '',
+          userId: ''
+        }),
+        fold(
+          message => console.error(message),
+          () => {
+            console.log('success');
+            if (submitCallback != null) {
+              submitCallback();
+            }
+          }
         )
       );
     },
@@ -80,3 +94,5 @@ export const RegisterForm: React.FC = () => {
     </form>
   );
 };
+
+export default RegisterForm;

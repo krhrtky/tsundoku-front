@@ -1,1 +1,1 @@
-export { useBooksContext } from './BookContext';
+export { useBooksContext, useBooksProvider } from './BookContext';
