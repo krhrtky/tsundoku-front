@@ -15,13 +15,13 @@ const initial: ContextType = {
     books: []
   },
   action: {
-    register: _ => {
+    register: (_): void => {
       throw new Error('Context does not inject.');
     },
-    delete: _ => {
+    delete: (_): void => {
       throw new Error('Context does not inject.');
     },
-    update: _ => {
+    update: (_): void => {
       throw new Error('Context does not inject.');
     }
   }
@@ -31,7 +31,7 @@ const Context = React.createContext(initial);
 
 export const useBooksProvider = (): React.FC<Props> => ({
   children
-}: Props) => {
+}: Props): React.ReactElement => {
   const [state, action] = useBooks();
   return (
     <Context.Provider value={{ state, action }}>{children}</Context.Provider>
