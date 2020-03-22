@@ -25,5 +25,8 @@ export {
   Box,
   Grid,
   FormControl,
-  DialogActions
+  DialogActions,
+  InputLabel,
+  Select,
+  MenuItem
 } from '@material-ui/core';
