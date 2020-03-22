@@ -1,4 +1,3 @@
-import '@/style/global.scss';
 import React from 'react';
 import { AppProps } from 'next/app';
 import { Layout } from '@/components/Layout';
