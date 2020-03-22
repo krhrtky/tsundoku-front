@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { fold } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Button, DialogActions, TextField } from '@/components/atoms/UI';
-import { ImMemoryRegister } from '@/usecase/book/Register';
+import { InMemoryRegister } from '@/usecase/book/Register';
 
 const initialValues = {
   name: '',
@@ -25,7 +25,7 @@ export type Props = {
 export const RegisterForm: React.FC<Props> = ({
   submitCallback = null
 }: Props) => {
-  const register = new ImMemoryRegister();
+  const register = new InMemoryRegister();
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     onSubmit: values => {
