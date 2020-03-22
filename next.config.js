@@ -15,4 +15,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withPlugins([[withSass], [withSourceMaps]], nextConfig);
+module.exports = withPlugins([/*[withSass], */ [withSourceMaps]], nextConfig);
