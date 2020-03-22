@@ -5,7 +5,7 @@ const { withPlugins } = require('next-compose-plugins');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withSourceMaps = require('@zeit/next-source-maps');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const withSass = require('@zeit/next-sass');
+// const withSass = require('@zeit/next-sass');
 
 const nextConfig = {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
