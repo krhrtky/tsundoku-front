@@ -1,11 +1,7 @@
 import React, { ComponentType } from 'react';
 import Head from 'next/head';
-import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
-const inMemoryLoadData = new InMemoryLoadData();
 
 const Home: ComponentType = () => {
-  const user = inMemoryLoadData.handle();
-
   return (
     <div className="container">
       <Head>
@@ -17,8 +13,6 @@ const Home: ComponentType = () => {
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
-        <p className="description">{JSON.stringify(user)}</p>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">

@@ -3,12 +3,24 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { fold } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/pipeable';
-import { Button, DialogActions, TextField } from '@/components/atoms/UI';
+import {
+  Button,
+  DialogActions,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from '@/components/atoms/UI';
 import { InMemoryRegister } from '@/usecase/book/Register';
+import { Type } from '@/model/Book';
+import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
+
+const selectableType = Object.values(Type);
 
 const initialValues = {
   name: '',
-  type: '',
+  type: selectableType[0],
   link: ''
 };
 
@@ -22,20 +34,23 @@ export type Props = {
   submitCallback?: (() => void) | null;
 };
 
+const inMemoryLoadData = new InMemoryLoadData();
+
 export const RegisterForm: React.FC<Props> = ({
   submitCallback = null
 }: Props) => {
   const register = new InMemoryRegister();
+  const user = inMemoryLoadData.handle();
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
-    onSubmit: values => {
+    onSubmit: ({ name, type, link }) => {
       pipe(
         register.execute({
-          name: values.name,
+          name,
           status: 'stock',
-          type: 'kidle',
-          link: '',
-          userId: ''
+          type,
+          link,
+          userId: user.id
         }),
         fold(
           message => console.error(message),
@@ -65,15 +80,23 @@ export const RegisterForm: React.FC<Props> = ({
         />
       </div>
       <div>
-        <TextField
-          fullWidth={true}
-          error={errors.type != null}
-          id="type"
-          label="Type"
-          value={values.type}
-          helperText={errors.type}
-          onChange={handleChange}
-        />
+        <FormControl>
+          <InputLabel id="type-label">Type</InputLabel>
+          <Select
+            id="type"
+            labelId="type-label"
+            label="Type"
+            autoWidth={true}
+            value={values.type}
+            onChange={handleChange}
+          >
+            {selectableType.map(value => (
+              <MenuItem key={value.toLowerCase()} value={value}>
+                {value}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </div>
       <div>
         <TextField
