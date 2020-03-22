@@ -29,9 +29,7 @@ const initial: ContextType = {
 
 const Context = React.createContext(initial);
 
-export const useBooksProvider = (): React.FC<Props> => ({
-  children
-}: Props): React.ReactElement => {
+export const BooksProvider: React.FC<Props> = ({ children }: Props) => {
   const [state, action] = useBooks();
   return (
     <Context.Provider value={{ state, action }}>{children}</Context.Provider>
