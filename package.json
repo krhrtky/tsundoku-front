@@ -23,6 +23,7 @@
     "fp-ts": "^2.5.1",
     "localstorage-ponyfill": "^1.0.2",
     "next": "9.2.2",
+    "next-compose-plugins": "^2.2.0",
     "node-sass": "^4.13.1",
     "ramda": "^0.27.0",
     "react": "16.12.0",
