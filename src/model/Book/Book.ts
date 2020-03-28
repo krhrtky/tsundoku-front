@@ -1,6 +1,6 @@
 import { History } from '@/model/History';
 import { Id as UserId } from '@/model/User';
-import { Id, Name, Link, Status, Type } from './vo';
+import { Id, Name, Link, Status, Statuses, Type } from './vo';
 import { ReadedPage } from '../History/ReadedPage';
 import { UUID } from '@/libs/UUID';
 
@@ -32,7 +32,7 @@ export class Book {
     return new Book(
       new Id(UUID.random()),
       name,
-      Status.Stock,
+      Statuses.Stock,
       type,
       link,
       userId
@@ -43,7 +43,7 @@ export class Book {
     return new Book(
       new Id(UUID.random()),
       name,
-      Status.Bought,
+      Statuses.Bought,
       type,
       link,
       userId
@@ -54,7 +54,7 @@ export class Book {
     return new Book(
       this.id,
       this.name,
-      Status.Bought,
+      Statuses.Bought,
       this.type,
       this.link,
       this.userId
@@ -65,7 +65,7 @@ export class Book {
     return new Book(
       this.id,
       this.name,
-      Status.Reading,
+      Statuses.Reading,
       this.type,
       this.link,
       this.userId
@@ -76,7 +76,7 @@ export class Book {
     return new Book(
       this.id,
       this.name,
-      Status.Over,
+      Statuses.Over,
       this.type,
       this.link,
       this.userId

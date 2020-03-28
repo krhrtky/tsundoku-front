@@ -13,10 +13,10 @@ import {
   MenuItem
 } from '@/components/atoms/UI';
 import { InMemoryRegister } from '@/usecase/book/Register';
-import { Type } from '@/model/Book';
+import { Types } from '@/model/Book';
 import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
 
-const selectableType = Object.values(Type);
+const selectableType = Object.values(Types);
 
 const initialValues = {
   name: '',
