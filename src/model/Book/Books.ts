@@ -1,8 +1,8 @@
 import { Book } from '@/model/Book/Book';
 
 export class Books {
-  readonly list: Array<Book>;
-  constructor(list: Array<Book>) {
+  readonly list: ReadonlyArray<Book>;
+  constructor(list: ReadonlyArray<Book>) {
     this.list = list;
   }
 
@@ -20,5 +20,9 @@ export class Books {
 
   isEmpty(): boolean {
     return this.list.length === 0;
+  }
+
+  total(): number {
+    return this.list.length;
   }
 }

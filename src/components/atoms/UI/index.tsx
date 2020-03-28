@@ -28,5 +28,8 @@ export {
   DialogActions,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
+  Card,
+  CardHeader,
+  CardContent
 } from '@material-ui/core';

@@ -86,4 +86,20 @@ export class Book {
   read(readedPage: ReadedPage): History {
     return History.create(this.id, readedPage);
   }
+
+  isStocked(): boolean {
+    return this.status === Statuses.Stock;
+  }
+
+  isBought(): boolean {
+    return this.status === Statuses.Bought;
+  }
+
+  isReading(): boolean {
+    return this.status === Statuses.Reading;
+  }
+
+  isOver(): boolean {
+    return this.status === Statuses.Over;
+  }
 }
