@@ -5,7 +5,8 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  Grid
+  Grid,
+  Typography
 } from '@/components/atoms/UI';
 import { RegisterForm } from './RegisterForm';
 
@@ -18,7 +19,9 @@ export const RegisterModal: React.FC = () => {
         <AddCircleOutline />
       </div>
       <Dialog fullWidth maxWidth="xs" open={isOpen} onClose={modal.close}>
-        <DialogTitle>Register Book</DialogTitle>
+        <DialogTitle>
+          <Typography color="textSecondary">Register Book</Typography>
+        </DialogTitle>
         <DialogContent>
           <Grid container alignItems="center" justify="center">
             <Grid item xs={8}>
