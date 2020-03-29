@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-storiesOf('Templates/BooksStatus', module).add('base', () => (
+storiesOf('Molecule/BooksStatus', module).add('base', () => (
   <>
     {PropsList.map((props, i) => (
       <Wrapper key={i}>

@@ -47,7 +47,7 @@ export const RegisterForm: React.FC<Props> = ({
       pipe(
         register.execute({
           name,
-          status: 'stock',
+          status: 'Stock',
           type,
           link,
           userId: user.id

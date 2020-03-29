@@ -31,17 +31,6 @@ export const BooksStatus: React.FC<Props> = (props: Props) => {
           </Card>
         </Grid>
       ))}
-      {/*<Grid item xs={2}>*/}
-      {/*  <Card>*/}
-      {/*    <CardContent>*/}
-      {/*      <Typography variant="h4" color="textSecondary" align="right">*/}
-      {/*        {bought}*/}
-      {/*      </Typography>*/}
-      {/*      <Typography variant="subtitle1" color="textSecondary" align="right">*/}
-      {/*        Bought*/}
-      {/*      </Typography>*/}
-      {/*    </CardContent>*/}
-      {/*  </Card>*/}
     </Grid>
   );
 };

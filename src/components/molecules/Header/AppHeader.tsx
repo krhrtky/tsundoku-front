@@ -18,10 +18,14 @@ type Props = {
   pathName: string;
 };
 
+const Wrapper = styled.div`
+  margin-bottom: 1rem;
+`;
+
 export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div>
+    <Wrapper>
       <AppBar position="static">
         <Toolbar>
           <div onClick={(): void => setMenuOpen(true)}>
@@ -36,6 +40,6 @@ export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
           <SideMenu open={menuOpen} />
         </div>
       </AppBar>
-    </div>
+    </Wrapper>
   );
 };

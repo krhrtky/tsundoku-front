@@ -12,7 +12,7 @@ export class Book {
   readonly link: Link;
   readonly userId: UserId;
 
-  private constructor(
+  constructor(
     id: Id,
     name: Name,
     status: Status,

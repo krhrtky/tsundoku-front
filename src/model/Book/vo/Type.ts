@@ -1,11 +1,13 @@
-export type Physics = 'Physics';
-export type Kindle = 'Kindle';
-export type EPub = 'Epub';
-
-export type Type = Physics | Kindle | EPub;
+const Physics: 'Physics' = 'Physics';
+const Kindle: 'Kindle' = 'Kindle';
+const EPub: 'Epub' = 'Epub';
 
 export const Types = {
-  Physics: 'Physics',
-  Kindle: 'Kindle',
-  EPub: 'Epub'
+  Physics,
+  Kindle,
+  EPub
 };
+
+type Unbox<T> = T extends { [K in keyof T]: infer U } ? U : never;
+
+export type Type = Unbox<typeof Types>;
