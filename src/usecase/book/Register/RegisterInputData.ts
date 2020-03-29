@@ -1,7 +1,9 @@
+import { Status, Type } from '@/model/Book';
+
 export type RegisterInputData = {
   name: string;
-  status: string;
-  type: string;
+  status: Status;
+  type: Type;
   link: string;
   userId: string;
 };
