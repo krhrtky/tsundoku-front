@@ -8,8 +8,6 @@ import {
   DialogActions,
   TextField,
   FormControl,
-  InputLabel,
-  Select,
   MenuItem
 } from '@/components/atoms/UI';
 import { InMemoryRegister } from '@/usecase/book/Register';
@@ -43,7 +41,9 @@ export const RegisterForm: React.FC<Props> = ({
   const user = inMemoryLoadData.handle();
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
+    validateOnChange: false,
     onSubmit: ({ name, type, link }) => {
+      console.log(type);
       pipe(
         register.execute({
           name,
@@ -70,7 +70,7 @@ export const RegisterForm: React.FC<Props> = ({
     <form onSubmit={handleSubmit}>
       <div>
         <TextField
-          fullWidth={true}
+          fullWidth
           error={errors.name != null}
           id="name"
           label="Name"
@@ -81,26 +81,25 @@ export const RegisterForm: React.FC<Props> = ({
       </div>
       <div>
         <FormControl>
-          <InputLabel id="type-label">Type</InputLabel>
-          <Select
-            id="type"
-            labelId="type-label"
+          <TextField
+            select
+            name="type"
             label="Type"
-            autoWidth={true}
             value={values.type}
+            fullWidth
             onChange={handleChange}
           >
             {selectableType.map(value => (
-              <MenuItem key={value.toLowerCase()} value={value}>
+              <MenuItem id="type" key={value.toLowerCase()} value={value}>
                 {value}
               </MenuItem>
             ))}
-          </Select>
+          </TextField>
         </FormControl>
       </div>
       <div>
         <TextField
-          fullWidth={true}
+          fullWidth
           error={errors.link != null}
           id="link"
           label="Link"
