@@ -1,4 +1,5 @@
 import React from 'react';
+import { ServerStyleSheet } from 'styled-components';
 import Document, {
   Html,
   Head,
@@ -6,33 +7,32 @@ import Document, {
   NextScript,
   DocumentContext
 } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
 
-type Props = {
-  // FIXME: define styleTags.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  styleTags: any;
-};
-
-// FIXME: remove ignore annotation.
-// eslint-disable-next-line tsc/config
-export default class MyDocument extends Document<Props> {
-  // FIXME: define return type.
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  static getInitialProps({ renderPage }: DocumentContext) {
+export default class MyDocument extends Document<{ styles: JSX.Element }> {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
-    // FIXME: difine return type.
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
-    );
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+        });
 
-    const styleTags = sheet.getStyleElement();
-
-    return { ...page, styleTags };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        )
+      };
+    } finally {
+      sheet.seal();
+    }
   }
-
   // FIXME: define return type.
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   render() {
@@ -41,7 +41,7 @@ export default class MyDocument extends Document<Props> {
         <Head>
           <title>Tsundoku</title>
           <meta charSet="utf-8" />
-          {this.props.styleTags}
+          {this.props.styles}
         </Head>
         <body>
           <Main />
