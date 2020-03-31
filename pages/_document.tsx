@@ -1,5 +1,4 @@
 import React from 'react';
-import { ServerStyleSheet } from 'styled-components';
 import Document, {
   Html,
   Head,
@@ -7,30 +6,35 @@ import Document, {
   NextScript,
   DocumentContext
 } from 'next/document';
+import { ServerStyleSheet as StyledServerStyleSheet } from 'styled-components';
+import { ServerStyleSheets as MaterialServerStyleSheets } from '@material-ui/core';
 
 export default class MyDocument extends Document<{ styles: JSX.Element }> {
   static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet();
+    const styledSheet = new StyledServerStyleSheet();
+    const materialSheet = new MaterialServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+          enhanceApp: App => props =>
+            materialSheet.collect(styledSheet.collectStyles(<App {...props} />))
         });
 
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
-        styles: (
-          <>
+        styles: [
+          <React.Fragment key="styles">
             {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        )
+            {materialSheet.getStyleElement()}
+            {styledSheet.getStyleElement()}
+          </React.Fragment>
+        ]
       };
     } finally {
-      sheet.seal();
+      styledSheet.seal();
     }
   }
   // FIXME: define return type.
