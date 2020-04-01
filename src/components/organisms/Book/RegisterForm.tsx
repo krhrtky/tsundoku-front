@@ -72,7 +72,7 @@ export const RegisterForm: React.FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <FormControl fullWidth>
         <TextField
           fullWidth
           error={errors.name != null}
@@ -82,26 +82,24 @@ export const RegisterForm: React.FC<Props> = ({
           helperText={errors.name}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <FormControl>
-          <TextField
-            select
-            name="type"
-            label="Type"
-            value={values.type}
-            fullWidth
-            onChange={handleChange}
-          >
-            {selectableType.map(value => (
-              <MenuItem id="type" key={value.toLowerCase()} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </TextField>
-        </FormControl>
-      </div>
-      <div>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          select
+          name="type"
+          label="Type"
+          value={values.type}
+          fullWidth
+          onChange={handleChange}
+        >
+          {selectableType.map(value => (
+            <MenuItem id="type" key={value.toLowerCase()} value={value}>
+              {value}
+            </MenuItem>
+          ))}
+        </TextField>
+      </FormControl>
+      <FormControl fullWidth>
         <TextField
           fullWidth
           error={errors.link != null}
@@ -111,7 +109,7 @@ export const RegisterForm: React.FC<Props> = ({
           helperText={errors.link}
           onChange={handleChange}
         />
-      </div>
+      </FormControl>
       <DialogActions>
         <Button type="submit" variant="contained" color="primary">
           Register
