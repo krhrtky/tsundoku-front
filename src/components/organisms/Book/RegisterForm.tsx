@@ -108,6 +108,7 @@ export const RegisterForm: React.FC<Props> = ({
           value={values.link}
           helperText={errors.link}
           onChange={handleChange}
+          placeholder="https://example.com"
         />
       </FormControl>
       <DialogActions>
