@@ -8,7 +8,8 @@ import {
   DialogActions,
   TextField,
   FormControl,
-  MenuItem
+  MenuItem,
+  InputAdornment
 } from '@/components/atoms/UI';
 import { InMemoryRegister } from '@/usecase/book/Register';
 import { Types } from '@/model/Book';
@@ -19,6 +20,7 @@ const selectableType = Object.values(Types);
 const initialValues = {
   name: '',
   type: selectableType[0],
+  price: 0,
   link: ''
 };
 
@@ -98,6 +100,20 @@ export const RegisterForm: React.FC<Props> = ({
             </MenuItem>
           ))}
         </TextField>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          fullWidth
+          error={errors.price != null}
+          id="price"
+          label="Price"
+          value={values.price}
+          helperText={errors.price}
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>
+          }}
+        />
       </FormControl>
       <FormControl fullWidth>
         <TextField
