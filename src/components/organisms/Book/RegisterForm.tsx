@@ -25,7 +25,11 @@ const initialValues = {
 const validationSchema = yup.object({
   name: yup.string().required(),
   type: yup.string().required(),
-  link: yup.string().notRequired()
+  price: yup.number().required(),
+  link: yup
+    .string()
+    .url()
+    .notRequired()
 });
 
 export type Props = {
