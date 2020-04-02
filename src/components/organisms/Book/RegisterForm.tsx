@@ -8,7 +8,8 @@ import {
   DialogActions,
   TextField,
   FormControl,
-  MenuItem
+  MenuItem,
+  InputAdornment
 } from '@/components/atoms/UI';
 import { InMemoryRegister } from '@/usecase/book/Register';
 import { Types } from '@/model/Book';
@@ -19,13 +20,18 @@ const selectableType = Object.values(Types);
 const initialValues = {
   name: '',
   type: selectableType[0],
+  price: 0,
   link: ''
 };
 
 const validationSchema = yup.object({
   name: yup.string().required(),
   type: yup.string().required(),
-  link: yup.string().notRequired()
+  price: yup.number().required(),
+  link: yup
+    .string()
+    .url()
+    .notRequired()
 });
 
 export type Props = {
@@ -42,13 +48,14 @@ export const RegisterForm: React.FC<Props> = ({
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     validateOnChange: false,
-    onSubmit: ({ name, type, link }) => {
+    onSubmit: ({ name, type, link, price }) => {
       console.log(type);
       pipe(
         register.execute({
           name,
           status: 'Stock',
           type,
+          price,
           link,
           userId: user.id
         }),
@@ -68,7 +75,7 @@ export const RegisterForm: React.FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <FormControl fullWidth>
         <TextField
           fullWidth
           error={errors.name != null}
@@ -78,26 +85,40 @@ export const RegisterForm: React.FC<Props> = ({
           helperText={errors.name}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <FormControl>
-          <TextField
-            select
-            name="type"
-            label="Type"
-            value={values.type}
-            fullWidth
-            onChange={handleChange}
-          >
-            {selectableType.map(value => (
-              <MenuItem id="type" key={value.toLowerCase()} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </TextField>
-        </FormControl>
-      </div>
-      <div>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          select
+          name="type"
+          label="Type"
+          value={values.type}
+          fullWidth
+          onChange={handleChange}
+        >
+          {selectableType.map(value => (
+            <MenuItem id="type" key={value.toLowerCase()} value={value}>
+              {value}
+            </MenuItem>
+          ))}
+        </TextField>
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          fullWidth
+          error={errors.price != null}
+          id="price"
+          label="Price"
+          value={values.price}
+          helperText={errors.price}
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">&yen;</InputAdornment>
+            )
+          }}
+        />
+      </FormControl>
+      <FormControl fullWidth>
         <TextField
           fullWidth
           error={errors.link != null}
@@ -106,8 +127,9 @@ export const RegisterForm: React.FC<Props> = ({
           value={values.link}
           helperText={errors.link}
           onChange={handleChange}
+          placeholder="https://example.com"
         />
-      </div>
+      </FormControl>
       <DialogActions>
         <Button type="submit" variant="contained" color="primary">
           Register

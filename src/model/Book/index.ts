@@ -1,5 +1,5 @@
 export { Book } from './Book';
-export { Id, Name, Link } from './vo';
+export { Id, Name, Link, Price } from './vo';
 export { Types } from './vo';
 import { Type as T, Status as S } from './vo';
 export type Type = T;

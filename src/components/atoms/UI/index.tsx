@@ -31,5 +31,6 @@ export {
   MenuItem,
   Card,
   CardHeader,
-  CardContent
+  CardContent,
+  InputAdornment
 } from '@material-ui/core';
