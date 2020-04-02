@@ -48,13 +48,14 @@ export const RegisterForm: React.FC<Props> = ({
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     validateOnChange: false,
-    onSubmit: ({ name, type, link }) => {
+    onSubmit: ({ name, type, link, price }) => {
       console.log(type);
       pipe(
         register.execute({
           name,
           status: 'Stock',
           type,
+          price,
           link,
           userId: user.id
         }),

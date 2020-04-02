@@ -7,3 +7,4 @@ export type Status = S;
 export { Types } from './Type';
 import { Type as T } from './Type';
 export type Type = T;
+export { Price } from './Price';

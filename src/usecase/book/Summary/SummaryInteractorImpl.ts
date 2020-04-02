@@ -2,8 +2,7 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { map, filter } from 'fp-ts/lib/ReadonlyArray';
 import { SummaryInteractor } from './SummaryInteractor';
 import { SummaryOutPutData } from '@/usecase/book/Summary/SummaryOutPutData';
-import { Book, Id, Link, Name } from '@/model/Book';
-import { Status, Type } from '@/model/Book/vo';
+import { Book, Id, Link, Name, Price, Status, Type } from '@/model/Book';
 import { Id as UserId } from '@/model/User';
 
 const length: (l: ReadonlyArray<Book>) => number = l => l.length;
@@ -16,6 +15,7 @@ export class SummaryInteractorImpl implements SummaryInteractor {
       status: Status;
       type: Type;
       link: string;
+      price: number;
       userId: string;
     }>
   ): SummaryOutPutData {
@@ -29,6 +29,7 @@ export class SummaryInteractorImpl implements SummaryInteractor {
             item.status,
             item.type,
             new Link(item.link),
+            new Price(item.price),
             new UserId(item.userId)
           )
       )

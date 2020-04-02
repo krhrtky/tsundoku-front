@@ -1,6 +1,6 @@
 import { History } from '@/model/History';
 import { Id as UserId } from '@/model/User';
-import { Id, Name, Link, Status, Statuses, Type } from './vo';
+import { Id, Name, Link, Price, Status, Statuses, Type } from './vo';
 import { ReadedPage } from '../History/ReadedPage';
 import { UUID } from '@/libs/UUID';
 
@@ -10,6 +10,7 @@ export class Book {
   readonly status: Status;
   readonly type: Type;
   readonly link: Link;
+  readonly price: Price;
   readonly userId: UserId;
 
   constructor(
@@ -18,6 +19,7 @@ export class Book {
     status: Status,
     type: Type,
     link: Link,
+    price: Price,
     userId: UserId
   ) {
     this.id = id;
@@ -25,27 +27,42 @@ export class Book {
     this.status = status;
     this.type = type;
     this.link = link;
+    this.price = price;
     this.userId = userId;
   }
 
-  static stock(name: Name, type: Type, link: Link, userId: UserId): Book {
+  static stock(
+    name: Name,
+    type: Type,
+    link: Link,
+    price: Price,
+    userId: UserId
+  ): Book {
     return new Book(
       new Id(UUID.random()),
       name,
       Statuses.Stock,
       type,
       link,
+      price,
       userId
     );
   }
 
-  static buy(name: Name, type: Type, link: Link, userId: UserId): Book {
+  static buy(
+    name: Name,
+    type: Type,
+    link: Link,
+    price: Price,
+    userId: UserId
+  ): Book {
     return new Book(
       new Id(UUID.random()),
       name,
       Statuses.Bought,
       type,
       link,
+      price,
       userId
     );
   }
@@ -57,6 +74,7 @@ export class Book {
       Statuses.Bought,
       this.type,
       this.link,
+      this.price,
       this.userId
     );
   }
@@ -68,6 +86,7 @@ export class Book {
       Statuses.Reading,
       this.type,
       this.link,
+      this.price,
       this.userId
     );
   }
@@ -79,6 +98,7 @@ export class Book {
       Statuses.Over,
       this.type,
       this.link,
+      this.price,
       this.userId
     );
   }

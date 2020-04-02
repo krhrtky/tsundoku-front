@@ -7,6 +7,7 @@ export type Item = {
   status: Status;
   type: Type;
   link: string;
+  price: number;
   userId: string;
 };
 
