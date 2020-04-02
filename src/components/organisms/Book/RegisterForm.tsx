@@ -111,7 +111,9 @@ export const RegisterForm: React.FC<Props> = ({
           helperText={errors.price}
           onChange={handleChange}
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: (
+              <InputAdornment position="start">&yen;</InputAdornment>
+            )
           }}
         />
       </FormControl>
