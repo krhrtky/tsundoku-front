@@ -138,5 +138,3 @@ export const RegisterForm: React.FC<Props> = ({
     </form>
   );
 };
-
-export default RegisterForm;

@@ -10,6 +10,7 @@ const singleRowData: FetchOutputData = [
     status: '購入中',
     type: 'Kindle',
     userId: 'xxxx',
+    price: 0,
     link: 'https://example.com'
   }
 ];
@@ -21,6 +22,7 @@ const multiRowData: FetchOutputData = [
     status: '購入中',
     type: 'Kindle',
     userId: 'xxxx',
+    price: 1000,
     link: 'https://example.com'
   },
   {
@@ -29,6 +31,7 @@ const multiRowData: FetchOutputData = [
     status: '購入中',
     type: 'Kindle',
     userId: 'xxxx',
+    price: 99999,
     link: 'https://example.com'
   }
 ];

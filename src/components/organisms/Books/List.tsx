@@ -9,6 +9,7 @@ import {
   Paper
 } from '@/components/atoms/UI';
 import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
+import { Formatter } from '@/libs/Formatter';
 
 type Props = {
   rows: FetchOutputData;
@@ -23,15 +24,21 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Type</TableCell>
+            <TableCell align="center">Price</TableCell>
             <TableCell align="center">Link</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow hover key={row.id}>
-              <TableCell align="left">{row.name}</TableCell>
+              <TableCell align="left" component="th" scope="row">
+                {row.name}
+              </TableCell>
               <TableCell align="left">{row.status}</TableCell>
               <TableCell align="left">{row.type}</TableCell>
+              <TableCell align="right">
+                {Formatter.Price.format(row.price)}
+              </TableCell>
               <TableCell align="left">
                 <a href={row.link} target="_blank" rel="noopener noreferrer">
                   {row.link}
