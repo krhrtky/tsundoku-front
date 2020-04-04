@@ -32,5 +32,6 @@ export {
   Card,
   CardHeader,
   CardContent,
-  InputAdornment
+  InputAdornment,
+  Link
 } from '@material-ui/core';

@@ -6,14 +6,23 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  Link
 } from '@/components/atoms/UI';
+import { OpenInNew as OIN } from '@/components/atoms/Icon';
 import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
 import { Formatter } from '@/libs/Formatter';
+import styled from 'styled-components';
 
 type Props = {
   rows: FetchOutputData;
 };
+
+const OpenInNew = styled(OIN)`
+  color: initial;
+  vertical-align: middle;
+  display: inline-flex;
+`;
 
 export const List: React.FC<Props> = ({ rows }: Props) => {
   return (
@@ -40,9 +49,10 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
                 {Formatter.Price.format(row.price)}
               </TableCell>
               <TableCell align="left">
-                <a href={row.link} target="_blank" rel="noopener noreferrer">
+                <Link href={row.link} target="_blank" rel="noopener noreferrer">
                   {row.link}
-                </a>
+                  <OpenInNew fontSize="small" />
+                </Link>
               </TableCell>
             </TableRow>
           ))}

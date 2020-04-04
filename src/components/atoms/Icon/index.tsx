@@ -1,1 +1,1 @@
-export { Menu, Home, AddCircleOutline } from '@material-ui/icons';
+export { Menu, Home, AddCircleOutline, OpenInNew } from '@material-ui/icons';
