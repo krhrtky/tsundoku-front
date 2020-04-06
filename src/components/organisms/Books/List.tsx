@@ -6,10 +6,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
   Paper,
   Link
 } from '@/components/atoms/UI';
-import { OpenInNew as OIN } from '@/components/atoms/Icon';
+import { OpenInNew as OIN, Delete, Create } from '@/components/atoms/Icon';
 import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
 import { Formatter } from '@/libs/Formatter';
 import styled from 'styled-components';
@@ -19,7 +20,6 @@ type Props = {
 };
 
 const OpenInNew = styled(OIN)`
-  color: initial;
   vertical-align: middle;
   display: inline-flex;
 `;
@@ -30,29 +30,75 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
       <Table stickyHeader>
         <TableHead>
           <TableRow>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Status</TableCell>
-            <TableCell align="center">Type</TableCell>
-            <TableCell align="center">Price</TableCell>
-            <TableCell align="center">Link</TableCell>
+            <TableCell align="center">
+              <Typography variant="subtitle1" color="textSecondary">
+                Name
+              </Typography>
+            </TableCell>
+            <TableCell align="center">
+              <Typography variant="subtitle1" color="textSecondary">
+                Status
+              </Typography>
+            </TableCell>
+            <TableCell align="center">
+              <Typography variant="subtitle1" color="textSecondary">
+                Type
+              </Typography>
+            </TableCell>
+            <TableCell align="center">
+              <Typography variant="subtitle1" color="textSecondary">
+                Price
+              </Typography>
+            </TableCell>
+            <TableCell align="center">
+              <Typography variant="subtitle1" color="textSecondary">
+                Link
+              </Typography>
+            </TableCell>
+            <TableCell align="center" />
+            <TableCell align="center" />
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow hover key={row.id}>
               <TableCell align="left" component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.status}</TableCell>
-              <TableCell align="left">{row.type}</TableCell>
-              <TableCell align="right">
-                {Formatter.Price.format(row.price)}
+                <Typography variant="subtitle1" color="textSecondary">
+                  {row.name}
+                </Typography>
               </TableCell>
               <TableCell align="left">
-                <Link href={row.link} target="_blank" rel="noopener noreferrer">
-                  {row.link}
-                  <OpenInNew fontSize="small" />
-                </Link>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {row.status}
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography variant="subtitle1" color="textSecondary">
+                  {row.type}
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography variant="subtitle1" color="textSecondary">
+                  {Formatter.Price.format(row.price)}
+                </Typography>
+              </TableCell>
+              <TableCell align="left" size="small" padding="none">
+                <Typography variant="body1" color="textSecondary" noWrap>
+                  <Link
+                    href={row.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {row.link}
+                    <OpenInNew fontSize="small" color="action" />
+                  </Link>
+                </Typography>
+              </TableCell>
+              <TableCell align="center" padding="none">
+                <Create fontSize="small" color="action" />
+              </TableCell>
+              <TableCell align="center" padding="none">
+                <Delete fontSize="small" color="action" />
               </TableCell>
             </TableRow>
           ))}
