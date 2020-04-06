@@ -15,9 +15,13 @@ export type State = {
   books: Array<Item>;
 };
 
-type Register = 'Register';
-type Delete = 'Delete';
-type Update = 'Update';
+const Register: 'Register' = 'Register';
+const Delete: 'Delete' = 'Delete';
+const Update: 'Update' = 'Update';
+
+type Register = typeof Register;
+type Delete = typeof Delete;
+type Update = typeof Update;
 
 type RegisterAction = {
   type: Register;
@@ -48,13 +52,13 @@ const initialState: State = {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'Register':
+    case Register:
       return { books: state.books.concat(action.payload.book) };
-    case 'Delete':
+    case Delete:
       return {
         books: state.books.filter(book => book.id === action.payload.book.id)
       };
-    case 'Update':
+    case Update:
       return {
         books: state.books
           .filter(book => book.id === action.payload.book.id)
@@ -83,11 +87,11 @@ export const useBooks = (injects?: State): [State, ActionType] => {
     state,
     {
       register: (book: Item): void =>
-        dispatch({ type: 'Register', payload: { book } }),
+        dispatch({ type: Register, payload: { book } }),
       delete: (book: Item): void =>
-        dispatch({ type: 'Delete', payload: { book } }),
+        dispatch({ type: Delete, payload: { book } }),
       update: (book: Item): void =>
-        dispatch({ type: 'Update', payload: { book } })
+        dispatch({ type: Update, payload: { book } })
     }
   ];
 };
