@@ -16,6 +16,7 @@
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
+    "@next/bundle-analyzer": "^9.3.4",
     "@zeit/next-source-maps": "^0.0.3",
     "dayjs": "^1.8.20",
     "formik": "^2.1.4",
