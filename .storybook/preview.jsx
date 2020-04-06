@@ -1,5 +1,6 @@
+import React from 'react';
 import { configure, addDecorator  } from '@storybook/react';
-import { ThemeProvider,createMuiTheme } from '@material-ui/core'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 
 function loadStories() {
   const req = require.context('../src', true, /.stories.(tsx|js)$/);
