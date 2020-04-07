@@ -14,7 +14,7 @@ export const BooksStatus: React.FC<Props> = (props: Props) => {
   return (
     <Grid container spacing={3}>
       {(Object.keys(props) as Array<PropsKeys>).map(key => (
-        <Grid key={key} item xs={3}>
+        <Grid key={key} item xs={12} sm={6} md={3}>
           <Card>
             <CardContent>
               <Typography variant="h4" color="textSecondary" align="right">
