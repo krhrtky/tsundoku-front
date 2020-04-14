@@ -8,7 +8,7 @@ import {
 import { Menu as MenuIcon } from '@/components/atoms/Icon';
 import styled from 'styled-components';
 import { SideMenu } from '@/components/molecules/Menu/SideMenu';
-import { RegisterModal } from '@/components/organisms/Book/RegisterModal';
+import { RegisterModal } from '@/components/organisms/Book/RegisterForm';
 
 const Typography = styled(Typo)`
   flex-grow: 1;
