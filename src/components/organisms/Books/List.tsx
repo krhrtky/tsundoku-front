@@ -14,6 +14,7 @@ import { OpenInNew as OIN, Delete, Create } from '@/components/atoms/Icon';
 import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
 import { Formatter } from '@/libs/Formatter';
 import styled from 'styled-components';
+import NextLink from 'next/link';
 
 type Props = {
   rows: FetchOutputData;
@@ -84,18 +85,24 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
               </TableCell>
               <TableCell align="left" size="small" padding="none">
                 <Typography variant="body1" color="textSecondary" noWrap>
-                  <Link
-                    href={row.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {row.link}
-                    <OpenInNew fontSize="small" color="action" />
-                  </Link>
+                  {row.link.length === 0 ? (
+                    ''
+                  ) : (
+                    <Link
+                      href={row.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {row.link}
+                      <OpenInNew fontSize="small" color="action" />
+                    </Link>
+                  )}
                 </Typography>
               </TableCell>
               <TableCell align="center" padding="none">
-                <Create fontSize="small" color="action" />
+                <NextLink href={`/books/edit?id=${row.id}`} prefetch>
+                  <Create fontSize="small" color="action" />
+                </NextLink>
               </TableCell>
               <TableCell align="center" padding="none">
                 <Delete fontSize="small" color="action" />

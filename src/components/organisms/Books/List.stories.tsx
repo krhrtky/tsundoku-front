@@ -1,9 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { List } from './List';
-import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
 
-const singleRowData: FetchOutputData = [
+const singleRowData = [
   {
     id: '1',
     name: 'sample book',
@@ -15,7 +14,7 @@ const singleRowData: FetchOutputData = [
   }
 ];
 
-const multiRowData: FetchOutputData = [
+const multiRowData = [
   {
     id: '1',
     name: 'sample book',
@@ -32,7 +31,7 @@ const multiRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 99999,
-    link: 'https://example.com'
+    link: ''
   }
 ];
 

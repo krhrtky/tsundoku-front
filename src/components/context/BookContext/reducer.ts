@@ -61,7 +61,7 @@ const reducer = (state: State, action: Action): State => {
     case Update:
       return {
         books: state.books
-          .filter(book => book.id === action.payload.book.id)
+          .filter(book => book.id !== action.payload.book.id)
           .concat([action.payload.book])
       };
     default:
