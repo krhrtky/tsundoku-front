@@ -1,13 +1,15 @@
-import { BookRepository, RegisterResult } from '@/model/Book/BookRepository';
+import { right } from 'fp-ts/lib/Either';
+import { UUID } from '@/libs/UUID';
+import { Status, Type } from '.';
+import { BookRepository, UpdateResult } from './BookRepository';
 import { RegisterInputData } from '@/usecase/book/Register';
 import { useBooksContext } from '@/components/context';
-import { UUID } from '@/libs/UUID';
-import { right } from 'fp-ts/lib/Either';
-import { Status, Type } from '@/model/Book';
+import { UpdateInputData } from '@/usecase/book/Update';
 
 export class InMemoryBookRepository implements BookRepository {
   private readonly context = useBooksContext();
-  save(newBook: RegisterInputData): RegisterResult {
+
+  save(newBook: RegisterInputData): UpdateResult {
     this.context.action.register({
       id: UUID.random(),
       ...newBook
@@ -15,6 +17,7 @@ export class InMemoryBookRepository implements BookRepository {
 
     return right(null);
   }
+
   all(): ReadonlyArray<{
     id: string;
     name: string;
@@ -24,5 +27,10 @@ export class InMemoryBookRepository implements BookRepository {
     userId: string;
   }> {
     return this.context.state.books;
+  }
+
+  update(updateBook: UpdateInputData): UpdateResult {
+    this.context.action.update(updateBook);
+    return right(null);
   }
 }

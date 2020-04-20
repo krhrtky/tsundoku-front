@@ -20,6 +20,7 @@ module.exports = {
     semi: ['error', 'always'],
     'prettier/prettier': ['error', { singleQuote: true, semi: true }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/explicit-function-return-type': ['off'],
     'react/prop-types': 'off',
     'tsc/config': [
       'error',

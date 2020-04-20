@@ -4,6 +4,10 @@ const path = require('path');
 const { withPlugins } = require('next-compose-plugins');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withSourceMaps = require('@zeit/next-source-maps');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+});
 
 const nextConfig = {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -13,4 +17,7 @@ const nextConfig = {
   }
 };
 
-module.exports = withPlugins([[withSourceMaps]], nextConfig);
+module.exports = withPlugins(
+  [[withSourceMaps], [withBundleAnalyzer]],
+  nextConfig
+);
