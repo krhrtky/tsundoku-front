@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Modal, useModalNew } from '@/components/hooks/useModal';
 import { Confirm } from '@/components/organisms/Modal';
 
 type ContextType = {
   modal: Modal;
   setMessages: (messages: ReadonlyArray<string>) => void;
-  setSubmit: (onsubmit: () => Promise<void>) => void;
+  setSubmit: (onSubmit: { execute: () => Promise<void> }) => void;
 };
 
 const initialValue: ContextType = {
@@ -30,25 +30,36 @@ const Context = createContext(initialValue);
 
 export const ConfirmModalProvider: React.FC = ({ children }) => {
   const modal = useModalNew();
-  const [msgs, setMsgs] = useState<ReadonlyArray<string>>([]);
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const [onSbmt, setOnSubmit] = useState<() => Promise<void>>(async () => {});
-  const setMessages = (messages: ReadonlyArray<string>) => setMsgs(messages);
-  const setSubmit = (onSubmit: () => Promise<void>) => setOnSubmit(onSubmit);
+  const [messages, setMessages] = useState<ReadonlyArray<string>>([]);
+  const [onSubmit, setOnSubmit] = useState<{ execute: () => Promise<void> }>({
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    execute: async () => {}
+  });
+  // const setMessages = useCallback(
+  //   (messages: ReadonlyArray<string>) => setMsgs(messages),
+  //   [msgs]
+  // );
+  // const setSubmit = useCallback(
+  //   (onSubmit: () => Promise<void>) => setOnSubmit(onSubmit),
+  //   [onSbmt]
+  // );
   return (
-    <Context.Provider value={{ modal, setMessages, setSubmit }}>
+    <Context.Provider
+      value={{ modal, setMessages: setMessages, setSubmit: setOnSubmit }}
+    >
       {children}
-      <Confirm modal={modal} messages={msgs} onSubmit={onSbmt} />
+      <Confirm modal={modal} messages={messages} onSubmit={onSubmit.execute} />
     </Context.Provider>
   );
 };
 
-export const useConfirmModal = (
-  messages: ReadonlyArray<string>,
-  onSubmit: () => Promise<void>
-) => {
+export const useConfirmModal = (messages: ReadonlyArray<string>) => {
   const { modal, setMessages, setSubmit } = useContext(Context);
-  setMessages(messages);
-  setSubmit(onSubmit);
-  return modal.open;
+  useEffect(() => {
+    setMessages(messages);
+  }, []);
+  return (onSubmit: () => Promise<void>) => {
+    setSubmit({ execute: onSubmit });
+    modal.open();
+  };
 };

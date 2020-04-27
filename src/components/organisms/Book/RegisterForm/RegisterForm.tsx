@@ -49,7 +49,6 @@ export const RegisterForm: React.FC<Props> = ({
     initialValues,
     validateOnChange: false,
     onSubmit: ({ name, type, link, price }) => {
-      console.log(type);
       pipe(
         register.execute({
           name,
@@ -62,7 +61,6 @@ export const RegisterForm: React.FC<Props> = ({
         fold(
           message => console.error(message),
           () => {
-            console.log('success');
             if (submitCallback != null) {
               submitCallback();
             }
