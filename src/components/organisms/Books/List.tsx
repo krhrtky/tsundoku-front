@@ -88,9 +88,14 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
                 </Typography>
               </TableCell>
               <TableCell align="left" size="small" padding="none">
-                <Typography variant="body1" color="textSecondary" noWrap>
+                <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  noWrap
+                  align={row.link.length === 0 ? 'center' : undefined}
+                >
                   {row.link.length === 0 ? (
-                    ''
+                    '-'
                   ) : (
                     <Link
                       href={row.link}
