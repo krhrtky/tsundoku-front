@@ -7,7 +7,7 @@ const singleRowData: FetchOutputData = [
   {
     id: '1',
     name: 'sample book',
-    status: '購入中',
+    status: 'Bought',
     type: 'Kindle',
     userId: 'xxxx',
     price: 0,
@@ -19,7 +19,7 @@ const multiRowData: FetchOutputData = [
   {
     id: '1',
     name: 'sample book',
-    status: '購入中',
+    status: 'Over',
     type: 'Kindle',
     userId: 'xxxx',
     price: 1000,
@@ -28,7 +28,7 @@ const multiRowData: FetchOutputData = [
   {
     id: '2',
     name: 'sample book',
-    status: '購入中',
+    status: 'Reading',
     type: 'Kindle',
     userId: 'xxxx',
     price: 99999,

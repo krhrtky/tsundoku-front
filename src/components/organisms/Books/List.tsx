@@ -15,6 +15,7 @@ import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
 import { Formatter } from '@/libs/Formatter';
 import styled from 'styled-components';
 import NextLink from 'next/link';
+import { useBooksContext, useConfirmModal } from '@/components/context';
 
 type Props = {
   rows: FetchOutputData;
@@ -26,6 +27,9 @@ const OpenInNew = styled(OIN)`
 `;
 
 export const List: React.FC<Props> = ({ rows }: Props) => {
+  const { action } = useBooksContext();
+  const openModal = useConfirmModal(['削除しますか?']);
+
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader>
@@ -84,9 +88,14 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
                 </Typography>
               </TableCell>
               <TableCell align="left" size="small" padding="none">
-                <Typography variant="body1" color="textSecondary" noWrap>
+                <Typography
+                  variant="body1"
+                  color="textSecondary"
+                  noWrap
+                  align={row.link.length === 0 ? 'center' : undefined}
+                >
                   {row.link.length === 0 ? (
-                    ''
+                    '-'
                   ) : (
                     <Link
                       href={row.link}
@@ -105,7 +114,13 @@ export const List: React.FC<Props> = ({ rows }: Props) => {
                 </NextLink>
               </TableCell>
               <TableCell align="center" padding="none">
-                <Delete fontSize="small" color="action" />
+                <Delete
+                  fontSize="small"
+                  color="action"
+                  onClick={() => {
+                    openModal(async () => action.delete(row));
+                  }}
+                />
               </TableCell>
             </TableRow>
           ))}

@@ -1,14 +1,16 @@
 import { useState } from 'react';
 
-export type Modal = {
+export type ModalNew = {
+  isOpen: boolean;
   open: () => void;
   close: () => void;
 };
 
-export const useModal = (): [boolean, Modal] => {
+export const useModalNew = (): ModalNew => {
   const [isOpen, setOpen] = useState(false);
 
-  const modal: Modal = {
+  return {
+    isOpen: isOpen,
     open: () => {
       setOpen(true);
     },
@@ -16,6 +18,4 @@ export const useModal = (): [boolean, Modal] => {
       setOpen(false);
     }
   };
-
-  return [isOpen, modal];
 };

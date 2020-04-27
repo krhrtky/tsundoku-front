@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src/**/*.ts*",
+    "lint": "eslint src/**/*.ts?",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
   },
@@ -37,7 +37,6 @@
     "@types/eslint": "^6.1.8",
     "@types/eslint-plugin-prettier": "^2.2.0",
     "@types/node": "^13.7.1",
-    "@types/node-sass": "^4.11.0",
     "@types/prettier": "^1.19.0",
     "@types/ramda": "^0.26.41",
     "@types/react": "16.9.20",
