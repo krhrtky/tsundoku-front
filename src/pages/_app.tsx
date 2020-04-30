@@ -2,6 +2,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { Layout } from '@/components/Layout';
 import { BooksProvider, ConfirmModalProvider } from '@/components/context';
+import '@/libs/Auth/Firebase';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   return (
