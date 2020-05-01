@@ -1,11 +1,12 @@
 import * as firebase from 'firebase';
+import getConfig from 'next/config';
 
-const firebaseConfig = {};
+const { publicRuntimeConfig } = getConfig();
 
 if (firebase.apps.length) {
   firebase.app();
 } else {
-  const app = firebase.initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(publicRuntimeConfig.firebase);
   firebase.performance(app);
   const auth = firebase.auth(app);
   auth.onAuthStateChanged(user => {
