@@ -6,20 +6,8 @@ const { publicRuntimeConfig } = getConfig();
 if (firebase.apps.length) {
   firebase.app();
 } else {
+  console.log(Object.values(publicRuntimeConfig.firebase));
   const app = firebase.initializeApp(publicRuntimeConfig.firebase);
   firebase.performance(app);
-  const auth = firebase.auth(app);
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      console.log(user);
-    } else {
-      auth.signInAnonymously().catch(error => {
-        if (error.code === 'auth/operation-not-allowed') {
-          alert('You must enable Anonymous auth in the Firebase Console.');
-        } else {
-          console.error(error);
-        }
-      });
-    }
-  });
+  firebase.auth(app);
 }

@@ -1,5 +1,5 @@
 import { UUID } from '@/libs/UUID';
-import { Id, Email, Name, Type } from './vo';
+import { Email, Id, Name, Type } from './vo';
 
 export class User {
   readonly id: Id;
@@ -14,12 +14,20 @@ export class User {
     this.type = type;
   }
 
-  static visitor(): User {
+  static general(id: Id, name: Name, email: Email): User {
+    return new User(id, name, email, Type.General);
+  }
+
+  static visitor(uuid: string = UUID.timeStamp()): User {
     return new User(
-      new Id(UUID.timeStamp()),
+      new Id(uuid),
       new Name('visitor'),
       new Email(''),
       Type.Visitor
     );
+  }
+
+  isVisitor(): boolean {
+    return this.type === Type.Visitor;
   }
 }
