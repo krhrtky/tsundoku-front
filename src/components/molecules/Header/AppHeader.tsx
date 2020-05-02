@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { auth } from 'firebase';
+import React, { useState } from 'react';
 import {
   AppBar,
   IconButton,
@@ -13,69 +11,30 @@ import styled from 'styled-components';
 import { SideMenu } from '@/components/molecules/Menu/SideMenu';
 import { RegisterModal } from '@/components/organisms/Book/RegisterForm';
 import { UserMenu } from '@/components/molecules/Menu';
-import { Id, User, Email, Name } from '@/model/User';
-import { fromNullable, getOrElse, map } from 'fp-ts/lib/Option';
-import { pipe } from 'fp-ts/lib/pipeable';
+import { User } from '@/model/User';
 
 const Typography = styled(Typo)`
   flex-grow: 1;
 `;
 
 type Props = {
-  pathName: string;
+  isLoading: boolean;
+  user: User | null;
+  signIn: () => void;
+  signOut: () => void;
 };
 
 const Wrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
+export const AppHeader: React.FC<Props> = ({
+  isLoading,
+  user,
+  signIn,
+  signOut
+}: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-  const signIn = () => router.push('/users/signIn');
-
-  const signOut = () =>
-    auth()
-      .signOut()
-      .then(() => router.push('/'))
-      .catch(error => console.error(error));
-
-  useEffect(() => {
-    auth().onAuthStateChanged(firebaseUser => {
-      if (firebaseUser) {
-        console.log(firebaseUser);
-
-        const displayName = pipe(
-          firebaseUser.providerData.find(provider => provider != null),
-          fromNullable,
-          map(provider => provider.displayName),
-          getOrElse(() => firebaseUser.displayName),
-          fromNullable,
-          getOrElse(() => '')
-        );
-
-        const newUser = firebaseUser.isAnonymous
-          ? User.visitor(firebaseUser.uid)
-          : User.general(
-              new Id(firebaseUser.uid),
-              new Name(displayName),
-              new Email('')
-            );
-        setUser(newUser);
-      } else {
-        auth()
-          .signInAnonymously()
-          .catch(error => {
-            if (error.code === 'auth/operation-not-allowed') {
-              alert('You must enable Anonymous auth in the Firebase Console.');
-            } else {
-              console.error(error);
-            }
-          });
-      }
-    });
-  }, []);
 
   return (
     <Wrapper>
@@ -86,10 +45,10 @@ export const AppHeader: React.FC<Props> = ({ pathName }: Props) => {
               <MenuIcon />
             </IconButton>
           </div>
-          <Typography variant="h6">{pathName}</Typography>
+          <Typography variant="h6">Tsundoku</Typography>
           <RegisterModal />
-          {user == null ? (
-            <CircularProgress />
+          {isLoading || user == null ? (
+            <CircularProgress color="inherit" />
           ) : (
             <UserMenu user={user} signIn={signIn} signOut={signOut} />
           )}

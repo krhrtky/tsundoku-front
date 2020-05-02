@@ -35,14 +35,6 @@ export const ConfirmModalProvider: React.FC = ({ children }) => {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     execute: async () => {}
   });
-  // const setMessages = useCallback(
-  //   (messages: ReadonlyArray<string>) => setMsgs(messages),
-  //   [msgs]
-  // );
-  // const setSubmit = useCallback(
-  //   (onSubmit: () => Promise<void>) => setOnSubmit(onSubmit),
-  //   [onSbmt]
-  // );
   return (
     <Context.Provider
       value={{ modal, setMessages: setMessages, setSubmit: setOnSubmit }}

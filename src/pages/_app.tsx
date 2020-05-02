@@ -1,12 +1,13 @@
 import React from 'react';
 import { AppProps } from 'next/app';
+import '@/libs/Auth/Firebase';
 import { Layout } from '@/components/Layout';
 import { BooksProvider, ConfirmModalProvider } from '@/components/context';
-import '@/libs/Auth/Firebase';
+import { UserContext } from '@/components/hooks';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   return (
-    <>
+    <UserContext>
       <BooksProvider>
         <ConfirmModalProvider>
           <style jsx global>{`
@@ -28,7 +29,7 @@ function App({ Component, pageProps }: AppProps): React.ReactElement {
           </Layout>
         </ConfirmModalProvider>
       </BooksProvider>
-    </>
+    </UserContext>
   );
 }
 
