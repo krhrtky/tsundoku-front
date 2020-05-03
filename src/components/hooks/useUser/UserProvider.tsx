@@ -22,7 +22,7 @@ const initialValue: ContextType = {
 
 const Context = createContext(initialValue);
 
-export const UserContext: React.FC = ({ children }) => {
+export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const isLoading = useMemo(() => user == null, [user]);
