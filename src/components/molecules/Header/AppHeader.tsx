@@ -46,12 +46,12 @@ export const AppHeader: React.FC<Props> = ({
             </IconButton>
           </div>
           <Typography variant="h6">Tsundoku</Typography>
-          <RegisterModal />
           {isLoading || user == null ? (
             <CircularProgress color="inherit" />
           ) : (
             <UserMenu user={user} signIn={signIn} signOut={signOut} />
           )}
+          <RegisterModal />
         </Toolbar>
         <div onClick={(): void => setMenuOpen(false)}>
           <SideMenu open={menuOpen} />
