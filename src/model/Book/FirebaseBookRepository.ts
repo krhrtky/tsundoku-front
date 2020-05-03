@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { right, left } from 'fp-ts/lib/Either';
 import { Status, Type } from '.';
 import { BookRepository, UpdateResult } from './BookRepository';

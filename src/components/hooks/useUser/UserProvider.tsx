@@ -5,7 +5,8 @@ import React, {
   useMemo,
   useState
 } from 'react';
-import { auth } from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { fromNullable, getOrElse, map } from 'fp-ts/lib/Option';
 import { Email, Id, Name, User } from '@/model/User';
@@ -27,7 +28,7 @@ export const UserProvider: React.FC = ({ children }) => {
   const isLoading = useMemo(() => user == null, [user]);
 
   useEffect(() => {
-    auth().onAuthStateChanged(firebaseUser => {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
       if (firebaseUser) {
         const displayName = pipe(
           firebaseUser.providerData.find(provider => provider != null),
@@ -47,7 +48,8 @@ export const UserProvider: React.FC = ({ children }) => {
             );
         setUser(newUser);
       } else {
-        auth()
+        firebase
+          .auth()
           .signInAnonymously()
           .catch(error => {
             if (error.code === 'auth/operation-not-allowed') {

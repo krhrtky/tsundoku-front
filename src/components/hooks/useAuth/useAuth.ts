@@ -1,10 +1,12 @@
 import router from 'next/router';
-import { auth } from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 const signIn = () => router.push('/users/signIn');
 
 const signOut = () =>
-  auth()
+  firebase
+    .auth()
     .signOut()
     .then(() => router.push('/'))
     .catch(error => console.error(error));

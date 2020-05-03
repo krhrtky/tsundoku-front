@@ -1,4 +1,6 @@
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/performance';
+import 'firebase/auth';
 import getConfig from 'next/config';
 
 const {
@@ -20,7 +22,7 @@ const init = () => {
     firebase.app();
   } else {
     const app = firebase.initializeApp(firebaseConfig);
-    firebase.performance(app);
+    // firebase.performance(app);
     firebase.auth(app);
     firebase.firestore(app);
   }
