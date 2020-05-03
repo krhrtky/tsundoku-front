@@ -1,7 +1,6 @@
 import React from 'react';
 import Document, {
   Html,
-  Head,
   Main,
   NextScript,
   DocumentContext
@@ -42,11 +41,11 @@ export default class MyDocument extends Document<{ styles: JSX.Element }> {
   render() {
     return (
       <Html lang="ja">
-        <Head>
+        <head>
           <title>Tsundoku</title>
           <meta charSet="utf-8" />
           {this.props.styles}
-        </Head>
+        </head>
         <body>
           <Main />
           <NextScript />

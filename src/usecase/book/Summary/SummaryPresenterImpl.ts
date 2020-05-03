@@ -1,13 +1,13 @@
 import { pipe } from 'fp-ts/lib/pipeable';
 import { map, filter } from 'fp-ts/lib/ReadonlyArray';
-import { SummaryInteractor } from './SummaryInteractor';
+import { SummaryPresenter } from './SummaryPresenter';
 import { SummaryOutPutData } from '@/usecase/book/Summary/SummaryOutPutData';
 import { Book, Id, Link, Name, Price, Status, Type } from '@/model/Book';
 import { Id as UserId } from '@/model/User';
 
 const length: (l: ReadonlyArray<Book>) => number = l => l.length;
 
-export class SummaryInteractorImpl implements SummaryInteractor {
+export class SummaryPresenterImpl implements SummaryPresenter {
   handle(
     data: ReadonlyArray<{
       id: string;

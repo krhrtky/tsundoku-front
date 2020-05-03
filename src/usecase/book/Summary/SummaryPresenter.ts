@@ -1,6 +1,6 @@
 import { SummaryOutPutData } from '@/usecase/book/Summary/SummaryOutPutData';
 
-export interface SummaryInteractor {
+export interface SummaryPresenter {
   handle(
     data: ReadonlyArray<{
       id: string;

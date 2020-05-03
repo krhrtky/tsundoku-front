@@ -28,10 +28,12 @@ export {
   DialogActions,
   InputLabel,
   Select,
+  Menu,
   MenuItem,
   Card,
   CardHeader,
   CardContent,
   InputAdornment,
-  Link
+  Link,
+  CircularProgress
 } from '@material-ui/core';

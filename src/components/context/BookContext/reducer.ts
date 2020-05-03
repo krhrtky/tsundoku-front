@@ -12,39 +12,41 @@ export type Item = {
 };
 
 export type State = {
-  books: Array<Item>;
+  books: ReadonlyArray<Item>;
 };
 
-const Register: 'Register' = 'Register';
-const Delete: 'Delete' = 'Delete';
-const Update: 'Update' = 'Update';
-
-type Register = typeof Register;
-type Delete = typeof Delete;
-type Update = typeof Update;
+const Register = 'Register' as const;
+const Delete = 'Delete' as const;
+const Update = 'Update' as const;
+const Init = 'Init' as const;
 
 type RegisterAction = {
-  type: Register;
+  type: typeof Register;
   payload: {
     book: Item;
   };
 };
 
 type DeleteAction = {
-  type: Delete;
+  type: typeof Delete;
   payload: {
     book: Item;
   };
 };
 
 type UpdateAction = {
-  type: Update;
+  type: typeof Update;
   payload: {
     book: Item;
   };
 };
 
-type Action = RegisterAction | DeleteAction | UpdateAction;
+type InitAction = {
+  type: typeof Init;
+  payload: State;
+};
+
+type Action = RegisterAction | DeleteAction | UpdateAction | InitAction;
 
 const initialState: State = {
   books: []
@@ -64,17 +66,21 @@ const reducer = (state: State, action: Action): State => {
           .filter(book => book.id !== action.payload.book.id)
           .concat([action.payload.book])
       };
+    case 'Init':
+      return action.payload;
     default:
       throw new Error(`unexpected ActionType: ${action}`);
   }
 };
 
-type Dispatch = (book: Item) => void;
+type SingleItemDispatch = (book: Item) => void;
+type MultiItemsDispatch = (books: ReadonlyArray<Item>) => void;
 
 export type ActionType = {
-  register: Dispatch;
-  delete: Dispatch;
-  update: Dispatch;
+  register: SingleItemDispatch;
+  delete: SingleItemDispatch;
+  update: SingleItemDispatch;
+  init: MultiItemsDispatch;
 };
 
 export const useBooks = (injects?: State): [State, ActionType] => {
@@ -91,7 +97,9 @@ export const useBooks = (injects?: State): [State, ActionType] => {
       delete: (book: Item): void =>
         dispatch({ type: Delete, payload: { book } }),
       update: (book: Item): void =>
-        dispatch({ type: Update, payload: { book } })
+        dispatch({ type: Update, payload: { book } }),
+      init: (books: ReadonlyArray<Item>): void =>
+        dispatch({ type: Init, payload: { books } })
     }
   ];
 };

@@ -1,2 +1,2 @@
 export { User } from './User';
-export { Id } from './vo';
+export { Id, Email, Name } from './vo';

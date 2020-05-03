@@ -1,7 +1,7 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { AppHeader } from '@/components/molecules/Header';
 import styled from 'styled-components';
+import { useAuth, useUser } from '@/components/hooks';
 
 const MainWrapper = styled.div`
   padding-left: 5%;
@@ -9,12 +9,16 @@ const MainWrapper = styled.div`
 `;
 
 export const Layout: React.FC = props => {
-  const router = useRouter();
-  const pathName =
-    router.pathname === '/' ? 'Home' : router.pathname.replace(/\//, '');
+  const { isLoading, user } = useUser();
+  const { signIn, signOut } = useAuth();
   return (
     <div>
-      <AppHeader pathName={pathName} />
+      <AppHeader
+        isLoading={isLoading}
+        user={user}
+        signIn={signIn}
+        signOut={signOut}
+      />
       <MainWrapper>{props.children}</MainWrapper>
     </div>
   );

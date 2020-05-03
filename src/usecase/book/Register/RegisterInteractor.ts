@@ -1,6 +1,6 @@
 import { RegisterInputData } from './RegisterInputData';
 import { RegisterOutPutData } from './RegisterOutPutData';
 
-export interface Register {
-  execute: (inputData: RegisterInputData) => RegisterOutPutData;
+export interface RegisterInteractor {
+  execute: (inputData: RegisterInputData) => Promise<RegisterOutPutData>;
 }
