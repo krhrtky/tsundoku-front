@@ -1,7 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { BookList } from './BookList';
-import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
+import {
+  FetchOutputData,
+  FetchOutputDataItem
+} from '@/usecase/book/Fetch/FetchOutputData';
 
 const singleRowData: FetchOutputData = [
   {
@@ -36,7 +39,17 @@ const multiRowData: FetchOutputData = [
   }
 ];
 
+const onEdit = (book: FetchOutputDataItem) => console.log(`onEdit: ${book}`);
+const onDelete = (book: FetchOutputDataItem) => () =>
+  console.log(`onDelete: ${book}`);
+
 storiesOf('Templates/BookList', module)
-  .add('empty list', () => <BookList books={[]} />)
-  .add('single row', () => <BookList books={singleRowData} />)
-  .add('multi row', () => <BookList books={multiRowData} />);
+  .add('empty list', () => (
+    <BookList books={[]} onEdit={onEdit} onDelete={onDelete} />
+  ))
+  .add('single row', () => (
+    <BookList books={singleRowData} onEdit={onEdit} onDelete={onDelete} />
+  ))
+  .add('multi row', () => (
+    <BookList books={multiRowData} onEdit={onEdit} onDelete={onDelete} />
+  ));

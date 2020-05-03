@@ -5,6 +5,7 @@ import { BookRepository, UpdateResult } from './BookRepository';
 import { RegisterInputData } from '@/usecase/book/Register';
 import { useBooksContext } from '@/components/context';
 import { UpdateInputData } from '@/usecase/book/Update';
+import { DeleteInputData, DeleteOutputData } from '@/usecase/book';
 
 export class InMemoryBookRepository implements BookRepository {
   private readonly context = useBooksContext();
@@ -31,6 +32,11 @@ export class InMemoryBookRepository implements BookRepository {
 
   update(updateBook: UpdateInputData): UpdateResult {
     this.context.action.update(updateBook);
+    return right(null);
+  }
+
+  delete(deleteBook: DeleteInputData): DeleteOutputData {
+    this.context.action.delete(deleteBook);
     return right(null);
   }
 }

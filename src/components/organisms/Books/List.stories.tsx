@@ -1,6 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { FetchOutputData } from '@/usecase/book/Fetch/FetchOutputData';
+import {
+  FetchOutputData,
+  FetchOutputDataItem
+} from '@/usecase/book/Fetch/FetchOutputData';
 import { List } from './List';
 
 const singleRowData: FetchOutputData = [
@@ -36,7 +39,17 @@ const multiRowData: FetchOutputData = [
   }
 ];
 
+const onEdit = (book: FetchOutputDataItem) => console.log(`onEdit: ${book}`);
+const onDelete = (book: FetchOutputDataItem) => () =>
+  console.log(`onDelete: ${book}`);
+
 storiesOf('Organisms/Books', module)
-  .add('empty list', () => <List rows={[]} />)
-  .add('single row', () => <List rows={singleRowData} />)
-  .add('multi row', () => <List rows={multiRowData} />);
+  .add('empty list', () => (
+    <List books={[]} onEdit={onEdit} onDelete={onDelete} />
+  ))
+  .add('single row', () => (
+    <List books={singleRowData} onEdit={onEdit} onDelete={onDelete} />
+  ))
+  .add('multi row', () => (
+    <List books={multiRowData} onEdit={onEdit} onDelete={onDelete} />
+  ));

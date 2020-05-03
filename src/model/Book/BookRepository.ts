@@ -1,6 +1,10 @@
 import { Either } from 'fp-ts/lib/Either';
 import { RegisterInputData } from '@/usecase/book/Register';
 import { UpdateInputData } from '@/usecase/book/Update';
+import {
+  DeleteInputData,
+  DeleteOutputData
+} from '@/usecase/book/Delete/DeleteInteractor';
 
 export type UpdateResult = Either<string, null>;
 
@@ -15,4 +19,5 @@ export interface BookRepository {
     userId: string;
   }>;
   update(updateBook: UpdateInputData): UpdateResult;
+  delete(deleteBook: DeleteInputData): DeleteOutputData;
 }

@@ -9,4 +9,5 @@ if (firebase.apps.length) {
   const app = firebase.initializeApp(publicRuntimeConfig.firebase);
   firebase.performance(app);
   firebase.auth(app);
+  firebase.firestore(app);
 }
