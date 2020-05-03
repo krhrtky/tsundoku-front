@@ -12,11 +12,11 @@ const Books: React.FC = () => {
   const goToEditPage = (book: FetchOutputDataItem) => {
     router.push(`/books/edit?id=${book.id}`);
   };
-  const inMemoryDelete = new InMemoryDelete();
+  const Delete = new InMemoryDelete();
 
   const openDeleteModal = (book: FetchOutputDataItem) => () => {
     openModal(async () => {
-      inMemoryDelete.handle(book);
+      await Delete.handle(book);
     });
   };
 

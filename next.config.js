@@ -9,7 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
 
-const firebase = {
+const firebaseConfig = {
   apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   databaseURL: process.env.DATABASE_URL,
@@ -22,10 +22,10 @@ const firebase = {
 
 const nextConfig = {
   env: {
-    ...firebase
+    ...firebaseConfig
   },
   publicRuntimeConfig: {
-    firebase
+    firebaseConfig
   },
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   webpack: config => {

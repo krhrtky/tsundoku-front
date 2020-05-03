@@ -6,11 +6,12 @@ import { RegisterInputData } from '@/usecase/book/Register';
 import { useBooksContext } from '@/components/context';
 import { UpdateInputData } from '@/usecase/book/Update';
 import { DeleteInputData, DeleteOutputData } from '@/usecase/book';
+import { Id as UserId } from '@/model/User';
 
 export class InMemoryBookRepository implements BookRepository {
   private readonly context = useBooksContext();
 
-  save(newBook: RegisterInputData): UpdateResult {
+  async save(newBook: RegisterInputData): Promise<UpdateResult> {
     this.context.action.register({
       id: UUID.random(),
       ...newBook
@@ -30,13 +31,28 @@ export class InMemoryBookRepository implements BookRepository {
     return this.context.state.books;
   }
 
-  update(updateBook: UpdateInputData): UpdateResult {
+  async update(updateBook: UpdateInputData): Promise<UpdateResult> {
     this.context.action.update(updateBook);
     return right(null);
   }
 
-  delete(deleteBook: DeleteInputData): DeleteOutputData {
+  async delete(deleteBook: DeleteInputData): Promise<DeleteOutputData> {
     this.context.action.delete(deleteBook);
     return right(null);
+  }
+
+  async findByUserId(
+    _: UserId
+  ): Promise<
+    ReadonlyArray<{
+      id: string;
+      name: string;
+      status: Status;
+      type: Type;
+      link: string;
+      userId: string;
+    }>
+  > {
+    return this.context.state.books;
   }
 }

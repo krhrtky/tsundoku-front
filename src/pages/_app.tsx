@@ -1,11 +1,12 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import '@/libs/Auth/Firebase';
+import { Application } from '@/app';
 import { Layout } from '@/components/Layout';
 import { BooksProvider, ConfirmModalProvider } from '@/components/context';
 import { UserProvider } from '@/components/hooks';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
+  Application.initialize();
   return (
     <UserProvider>
       <BooksProvider>

@@ -2,7 +2,6 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { fold } from 'fp-ts/lib/Either';
-import { pipe } from 'fp-ts/lib/pipeable';
 import {
   Button,
   DialogActions,
@@ -11,9 +10,9 @@ import {
   MenuItem,
   InputAdornment
 } from '@/components/atoms/UI';
-import { InMemoryRegister } from '@/usecase/book/Register';
+import { RegisterImpl } from '@/usecase/book/Register';
 import { Types } from '@/model/Book';
-import { InMemoryLoadData } from '@/usecase/user/LoadLocalData';
+import { useUser } from '@/components/hooks';
 
 const selectableType = Object.values(Types);
 
@@ -38,35 +37,35 @@ export type Props = {
   submitCallback?: (() => void) | null;
 };
 
-const inMemoryLoadData = new InMemoryLoadData();
-
 export const RegisterForm: React.FC<Props> = ({
   submitCallback = null
 }: Props) => {
-  const register = new InMemoryRegister();
-  const user = inMemoryLoadData.handle();
+  const register = new RegisterImpl();
+  const { user } = useUser();
+
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     validateOnChange: false,
-    onSubmit: ({ name, type, link, price }) => {
-      pipe(
-        register.execute({
-          name,
-          status: 'Stock',
-          type,
-          price,
-          link,
-          userId: user.id
-        }),
-        fold(
-          message => console.error(message),
-          () => {
-            if (submitCallback != null) {
-              submitCallback();
-            }
+    onSubmit: async ({ name, type, link, price }) => {
+      if (user == null) {
+        return;
+      }
+      const result = await register.execute({
+        name,
+        status: 'Stock',
+        type,
+        price,
+        link,
+        userId: user.id.value
+      });
+      fold(
+        message => console.error(message),
+        () => {
+          if (submitCallback != null) {
+            submitCallback();
           }
-        )
-      );
+        }
+      )(result);
     },
     validationSchema
   });

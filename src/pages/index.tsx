@@ -1,6 +1,6 @@
 import React, { ComponentType } from 'react';
 import { Summary } from '@/components/templates/Summary';
-import { InMemorySummary as Usecase } from '@/usecase/book/Summary';
+import { SummaryImpl as Usecase } from '@/usecase/book/Summary';
 
 const Home: ComponentType = () => {
   const useCase = new Usecase();

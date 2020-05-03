@@ -24,7 +24,6 @@ const Context = createContext(initialValue);
 
 export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-
   const isLoading = useMemo(() => user == null, [user]);
 
   useEffect(() => {

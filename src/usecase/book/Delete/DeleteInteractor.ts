@@ -14,5 +14,5 @@ export type DeleteInputData = {
 export type DeleteOutputData = Either<string, null>;
 
 export interface DeleteInteractor {
-  handle(inputData: DeleteInputData): DeleteOutputData;
+  handle(inputData: DeleteInputData): Promise<DeleteOutputData>;
 }

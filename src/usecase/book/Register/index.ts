@@ -1,7 +1,7 @@
-import { Register as UseCase } from './Register';
+import { RegisterInteractor as UseCase } from './RegisterInteractor';
 import { RegisterInputData as InputData } from './RegisterInputData';
 import { RegisterOutPutData as OutPutData } from './RegisterOutPutData';
-export { InMemoryRegister } from './InMemoryRegister';
+export { RegisterImpl } from './RegisterImpl';
 
 export type Register = UseCase;
 export type RegisterInputData = InputData;
