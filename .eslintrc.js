@@ -16,6 +16,7 @@ module.exports = {
       jsx: true,
     },
   },
+  ignorePatterns: ['next.config.js', 'server.js'],
   rules: {
     semi: ['error', 'always'],
     'prettier/prettier': ['error', { singleQuote: true, semi: true }],
