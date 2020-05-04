@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "eslint 'src/**/*.ts?'",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook"
   },
   "engines": {
-    "node": "12.16.1"
+    "node": "12.x"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
     "@next/bundle-analyzer": "^9.3.4",
     "@zeit/next-source-maps": "^0.0.3",
+    "basic-auth-connect": "^1.0.0",
     "dayjs": "^1.8.20",
+    "express": "^4.17.1",
     "firebase": "^7.14.2",
     "formik": "^2.1.4",
     "fp-ts": "^2.5.1",
