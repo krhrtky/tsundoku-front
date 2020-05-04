@@ -13,6 +13,7 @@ import {
 import { RegisterImpl } from '@/usecase/book/Register';
 import { Types } from '@/model/Book';
 import { useUser } from '@/components/hooks';
+import { useSnackbar } from 'notistack';
 
 const selectableType = Object.values(Types);
 
@@ -42,6 +43,7 @@ export const RegisterForm: React.FC<Props> = ({
 }: Props) => {
   const register = new RegisterImpl();
   const { user } = useUser();
+  const { enqueueSnackbar } = useSnackbar();
 
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
@@ -58,8 +60,8 @@ export const RegisterForm: React.FC<Props> = ({
         link,
         userId: user.id.value
       });
-      fold(
-        message => console.error(message),
+      fold<string, null, void>(
+        errorMessage => enqueueSnackbar(errorMessage, { variant: 'error' }),
         () => {
           if (submitCallback != null) {
             submitCallback();
