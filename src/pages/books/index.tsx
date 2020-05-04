@@ -4,6 +4,8 @@ import { BookList } from '@/components/templates/BookList';
 import { InMemoryDelete } from '@/usecase/book';
 import { useRouter } from 'next/router';
 import { FetchOutputDataItem } from '@/usecase/book/Fetch/FetchOutputData';
+import { fold } from 'fp-ts/lib/Either';
+import { useSnackbar } from 'notistack';
 
 const Books: React.FC = () => {
   const router = useRouter();
@@ -13,10 +15,15 @@ const Books: React.FC = () => {
     router.push(`/books/edit?id=${book.id}`);
   };
   const Delete = new InMemoryDelete();
+  const { enqueueSnackbar } = useSnackbar();
 
   const openDeleteModal = (book: FetchOutputDataItem) => () => {
     openModal(async () => {
-      await Delete.handle(book);
+      const result = await Delete.handle(book);
+      fold<string, null, void>(
+        errorMessage => enqueueSnackbar(errorMessage, { variant: 'error' }),
+        () => enqueueSnackbar('success', { variant: 'success' })
+      )(result);
     });
   };
 
