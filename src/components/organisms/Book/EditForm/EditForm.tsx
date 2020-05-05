@@ -126,6 +126,17 @@ export const EditForm: React.FC<Props> = ({
       <FormControl fullWidth>
         <TextField
           fullWidth
+          error={errors.totalPages != null}
+          id="totalPages"
+          label="TotalPages"
+          value={values.totalPages}
+          helperText={errors.totalPages}
+          onChange={handleChange}
+        />
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          fullWidth
           error={errors.link != null}
           id="link"
           label="Link"
