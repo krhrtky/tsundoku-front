@@ -30,6 +30,8 @@ export class InMemoryBookRepository implements BookRepository {
     type: Type;
     link: string;
     userId: string;
+    createdAt: Date;
+    updatedAt: Date;
   }> {
     return this.context.state.books;
   }
@@ -54,6 +56,8 @@ export class InMemoryBookRepository implements BookRepository {
       type: Type;
       link: string;
       userId: string;
+      createdAt: Date;
+      updatedAt: Date;
     }>
   > {
     return this.context.state.books;

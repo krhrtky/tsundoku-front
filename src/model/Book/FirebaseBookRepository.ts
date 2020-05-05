@@ -86,14 +86,7 @@ export class FirebaseBookRepository implements BookRepository {
     }
   }
 
-  all(): ReadonlyArray<{
-    id: string;
-    name: string;
-    status: Status;
-    type: Type;
-    link: string;
-    userId: string;
-  }> {
+  all(): OutPutDate {
     return this.context.state.books;
   }
 

@@ -1,6 +1,16 @@
 import { History } from '@/model/History';
 import { Id as UserId } from '@/model/User';
-import { Id, Name, Link, Price, Status, Statuses, Type } from './vo';
+import {
+  Id,
+  Name,
+  Link,
+  Price,
+  Status,
+  Statuses,
+  Type,
+  CreatedAt,
+  UpdatedAt
+} from './vo';
 import { ReadedPage } from '../History/ReadedPage';
 import { UUID } from '@/libs/UUID';
 
@@ -12,6 +22,8 @@ export class Book {
   readonly link: Link;
   readonly price: Price;
   readonly userId: UserId;
+  readonly createdAt: CreatedAt;
+  readonly updatedAt: UpdatedAt;
 
   constructor(
     id: Id,
@@ -20,7 +32,9 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ) {
     this.id = id;
     this.name = name;
@@ -29,6 +43,8 @@ export class Book {
     this.link = link;
     this.price = price;
     this.userId = userId;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
   static stock(
@@ -36,7 +52,9 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ): Book {
     return new Book(
       new Id(UUID.random()),
@@ -45,7 +63,9 @@ export class Book {
       type,
       link,
       price,
-      userId
+      userId,
+      createdAt,
+      updatedAt
     );
   }
 
@@ -54,7 +74,9 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ): Book {
     return new Book(
       new Id(UUID.random()),
@@ -63,7 +85,9 @@ export class Book {
       type,
       link,
       price,
-      userId
+      userId,
+      createdAt,
+      updatedAt
     );
   }
 
@@ -75,7 +99,9 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 
@@ -87,7 +113,9 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 
@@ -99,7 +127,9 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 

@@ -19,6 +19,8 @@ export interface BookRepository {
     type: Type;
     link: string;
     userId: string;
+    createdAt: Date;
+    updatedAt: Date;
   }>;
   update(updateBook: UpdateInputData): Promise<UpdateResult>;
   delete(deleteBook: DeleteInputData): Promise<DeleteOutputData>;
@@ -32,6 +34,8 @@ export interface BookRepository {
       type: Type;
       link: string;
       userId: string;
+      createdAt: Date;
+      updatedAt: Date;
     }>
   >;
 }
