@@ -12,8 +12,11 @@ export class InMemoryBookRepository implements BookRepository {
   private readonly context = useBooksContext();
 
   async save(newBook: RegisterInputData): Promise<UpdateResult> {
+    const now = new Date();
     this.context.action.register({
       id: UUID.random(),
+      createdAt: now,
+      updatedAt: now,
       ...newBook
     });
 

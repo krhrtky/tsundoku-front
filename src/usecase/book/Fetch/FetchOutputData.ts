@@ -8,6 +8,8 @@ export type FetchOutputDataItem = {
   link: string;
   price: number;
   userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type FetchOutputData = ReadonlyArray<FetchOutputDataItem>;

@@ -9,6 +9,8 @@ export type DeleteInputData = {
   link: string;
   price: number;
   userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type DeleteOutputData = Either<string, null>;

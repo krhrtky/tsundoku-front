@@ -26,6 +26,8 @@ const Edit: NextPage = () => {
         const result = await update.execute({
           id: book.id,
           userId: book.userId,
+          createdAt: book.createdAt,
+          updatedAt: book.updatedAt,
           ...initialValues
         });
         fold<string, null, void>(

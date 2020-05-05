@@ -9,6 +9,8 @@ export type Item = {
   link: string;
   price: number;
   userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type State = {

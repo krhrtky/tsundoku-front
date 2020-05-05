@@ -8,4 +8,6 @@ export type UpdateInputData = {
   link: string;
   price: number;
   userId: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
