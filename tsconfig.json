@@ -16,7 +16,9 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
     "esModuleInterop": true,
     "allowJs": true,

@@ -5,13 +5,22 @@ import { Application } from '@/app';
 import { Layout } from '@/components/Layout';
 import { BooksProvider, ConfirmModalProvider } from '@/components/context';
 import { UserProvider } from '@/components/hooks';
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
+  anchorOriginTopRight: {
+    top: '60px'
+  }
+});
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   Application.initialize();
+  const classes = useStyles();
   return (
     <SnackbarProvider
       maxSnack={3}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      classes={{ ...classes }}
     >
       <UserProvider>
         <BooksProvider>

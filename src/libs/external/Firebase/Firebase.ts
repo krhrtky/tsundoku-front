@@ -22,9 +22,11 @@ const init = () => {
     firebase.app();
   } else {
     const app = firebase.initializeApp(firebaseConfig);
-    // firebase.performance(app);
     firebase.auth(app);
     firebase.firestore(app);
+    if (typeof window !== 'undefined') {
+      firebase.performance();
+    }
   }
 };
 
