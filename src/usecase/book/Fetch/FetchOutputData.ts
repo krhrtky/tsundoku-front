@@ -7,6 +7,7 @@ export type FetchOutputDataItem = {
   type: Type;
   link: string;
   price: number;
+  totalPages: number;
   userId: string;
   createdAt: Date;
   updatedAt: Date;

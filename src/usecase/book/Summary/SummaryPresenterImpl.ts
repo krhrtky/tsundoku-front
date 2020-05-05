@@ -11,7 +11,8 @@ import {
   Status,
   Type,
   CreatedAt,
-  UpdatedAt
+  UpdatedAt,
+  TotalPages
 } from '@/model/Book';
 import { Id as UserId } from '@/model/User';
 import { DateTime } from '@/libs/DateTime';
@@ -27,6 +28,7 @@ export class SummaryPresenterImpl implements SummaryPresenter {
       type: Type;
       link: string;
       price: number;
+      totalPages: number;
       userId: string;
       createdAt: Date;
       updatedAt: Date;
@@ -43,6 +45,7 @@ export class SummaryPresenterImpl implements SummaryPresenter {
             item.type,
             new Link(item.link),
             new Price(item.price),
+            new TotalPages(item.totalPages),
             new UserId(item.userId),
             new CreatedAt(DateTime.fromDate(item.createdAt)),
             new UpdatedAt(DateTime.fromDate(item.updatedAt))

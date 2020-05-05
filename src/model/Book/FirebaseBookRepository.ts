@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { right, left } from 'fp-ts/lib/Either';
 import { Status, Type } from '.';
-import { BookRepository, UpdateResult } from './BookRepository';
+import { BookRepository, OutputDate, UpdateResult } from './BookRepository';
 import { RegisterInputData } from '@/usecase/book/Register';
 import { useBooksContext } from '@/components/context';
 import { UpdateInputData } from '@/usecase/book/Update';
@@ -11,19 +11,6 @@ import { Id as UserId } from '@/model/User';
 import { UUID } from '@/libs/UUID';
 
 type Timestamp = firebase.firestore.Timestamp;
-type UnwrappedBook = {
-  id: string;
-  name: string;
-  status: Status;
-  type: Type;
-  link: string;
-  price: number;
-  userId: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type OutPutDate = ReadonlyArray<UnwrappedBook>;
 
 type BaseBookDoc = {
   id: string;
@@ -32,6 +19,7 @@ type BaseBookDoc = {
   type: Type;
   link: string;
   price: number;
+  totalPages: number;
   userId: string;
   createdAt: firebase.firestore.FieldValue;
   updatedAt: firebase.firestore.FieldValue;
@@ -86,7 +74,7 @@ export class FirebaseBookRepository implements BookRepository {
     }
   }
 
-  all(): OutPutDate {
+  all(): OutputDate {
     return this.context.state.books;
   }
 
@@ -132,7 +120,7 @@ export class FirebaseBookRepository implements BookRepository {
     }
   }
 
-  async findByUserId(userId: UserId): Promise<OutPutDate> {
+  async findByUserId(userId: UserId): Promise<OutputDate> {
     try {
       const result = await this.collection
         .where('userId', '==', userId.value)

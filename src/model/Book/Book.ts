@@ -8,6 +8,7 @@ import {
   Status,
   Statuses,
   Type,
+  TotalPages,
   CreatedAt,
   UpdatedAt
 } from './vo';
@@ -21,6 +22,7 @@ export class Book {
   readonly type: Type;
   readonly link: Link;
   readonly price: Price;
+  readonly totalPages: TotalPages;
   readonly userId: UserId;
   readonly createdAt: CreatedAt;
   readonly updatedAt: UpdatedAt;
@@ -32,6 +34,7 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
+    totalPages: TotalPages,
     userId: UserId,
     createdAt: CreatedAt,
     updatedAt: UpdatedAt
@@ -42,6 +45,7 @@ export class Book {
     this.type = type;
     this.link = link;
     this.price = price;
+    this.totalPages = totalPages;
     this.userId = userId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
@@ -52,6 +56,7 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
+    totalPages: TotalPages,
     userId: UserId,
     createdAt: CreatedAt,
     updatedAt: UpdatedAt
@@ -63,6 +68,7 @@ export class Book {
       type,
       link,
       price,
+      totalPages,
       userId,
       createdAt,
       updatedAt
@@ -74,6 +80,7 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
+    totalPages: TotalPages,
     userId: UserId,
     createdAt: CreatedAt,
     updatedAt: UpdatedAt
@@ -85,6 +92,7 @@ export class Book {
       type,
       link,
       price,
+      totalPages,
       userId,
       createdAt,
       updatedAt
@@ -99,6 +107,7 @@ export class Book {
       this.type,
       this.link,
       this.price,
+      this.totalPages,
       this.userId,
       this.createdAt,
       this.updatedAt
@@ -113,6 +122,7 @@ export class Book {
       this.type,
       this.link,
       this.price,
+      this.totalPages,
       this.userId,
       this.createdAt,
       this.updatedAt
@@ -127,6 +137,7 @@ export class Book {
       this.type,
       this.link,
       this.price,
+      this.totalPages,
       this.userId,
       this.createdAt,
       this.updatedAt

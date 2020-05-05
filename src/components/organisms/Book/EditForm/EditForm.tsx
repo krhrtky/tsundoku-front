@@ -19,6 +19,7 @@ type InitialValues = {
   type: Type;
   status: Status;
   price: number;
+  totalPages: number;
   link: string;
 };
 
@@ -29,7 +30,14 @@ const validationSchema = yup.object({
     .required(),
   type: yup.mixed<Type>().oneOf(selectableType),
   status: yup.mixed<Status>().oneOf(selectableStatus),
-  price: yup.number().required(),
+  price: yup
+    .number()
+    .min(1)
+    .required(),
+  totalPages: yup
+    .number()
+    .min(1)
+    .required(),
   link: yup
     .string()
     .url()

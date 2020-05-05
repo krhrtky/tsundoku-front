@@ -16,6 +16,7 @@ const singleRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 0,
+    totalPages: 100,
     link: 'https://example.com',
     createdAt: date,
     updatedAt: date
@@ -30,6 +31,7 @@ const multiRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 1000,
+    totalPages: 200,
     link: 'https://example.com',
     createdAt: date,
     updatedAt: date
@@ -41,6 +43,7 @@ const multiRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 99999,
+    totalPages: 55555,
     link: 'https://example.com',
     createdAt: date,
     updatedAt: date

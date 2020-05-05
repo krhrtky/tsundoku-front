@@ -6,5 +6,6 @@ export type RegisterInputData = {
   type: Type;
   link: string;
   price: number;
+  totalPages: number;
   userId: string;
 };
