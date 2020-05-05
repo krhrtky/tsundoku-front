@@ -11,8 +11,8 @@ const Books: React.FC = () => {
   const router = useRouter();
   const { state } = useBooksContext();
   const openModal = useConfirmModal(['削除しますか?']);
-  const goToEditPage = (book: FetchOutputDataItem) => {
-    router.push(`/books/edit?id=${book.id}`);
+  const goToEditPage = async (book: FetchOutputDataItem) => {
+    await router.push(`/books/edit?id=${book.id}`);
   };
   const Delete = new InMemoryDelete();
   const { enqueueSnackbar } = useSnackbar();

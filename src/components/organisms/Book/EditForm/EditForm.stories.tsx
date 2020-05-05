@@ -10,6 +10,7 @@ const initialValues = {
   type,
   status,
   price: 1000,
+  totalPages: 100,
   link: 'https://example.com'
 };
 

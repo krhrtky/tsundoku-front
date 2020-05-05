@@ -30,6 +30,7 @@
     "isolatedModules": true
   },
   "exclude": [
+    "**/*.stories.tsx",
     "node_modules"
   ],
   "include": [

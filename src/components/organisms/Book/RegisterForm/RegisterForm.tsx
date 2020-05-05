@@ -21,13 +21,21 @@ const initialValues = {
   name: '',
   type: selectableType[0],
   price: 0,
+  totalPages: 0,
   link: ''
 };
 
 const validationSchema = yup.object({
   name: yup.string().required(),
   type: yup.string().required(),
-  price: yup.number().required(),
+  price: yup
+    .number()
+    .min(1)
+    .required(),
+  totalPages: yup
+    .number()
+    .min(1)
+    .required(),
   link: yup
     .string()
     .url()
@@ -48,7 +56,7 @@ export const RegisterForm: React.FC<Props> = ({
   const { values, handleSubmit, errors, handleChange } = useFormik({
     initialValues,
     validateOnChange: false,
-    onSubmit: async ({ name, type, link, price }) => {
+    onSubmit: async ({ name, type, link, price, totalPages }) => {
       if (user == null) {
         return;
       }
@@ -57,6 +65,7 @@ export const RegisterForm: React.FC<Props> = ({
         status: 'Stock',
         type,
         price,
+        totalPages,
         link,
         userId: user.id.value
       });
@@ -115,6 +124,17 @@ export const RegisterForm: React.FC<Props> = ({
               <InputAdornment position="start">&yen;</InputAdornment>
             )
           }}
+        />
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          fullWidth
+          error={errors.totalPages != null}
+          id="totalPages"
+          label="TotalPages"
+          value={values.totalPages}
+          helperText={errors.totalPages}
+          onChange={handleChange}
         />
       </FormControl>
       <FormControl fullWidth>

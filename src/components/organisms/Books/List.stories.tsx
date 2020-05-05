@@ -6,6 +6,8 @@ import {
 } from '@/usecase/book/Fetch/FetchOutputData';
 import { List } from './List';
 
+const date = new Date();
+
 const singleRowData: FetchOutputData = [
   {
     id: '1',
@@ -14,7 +16,10 @@ const singleRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 0,
-    link: 'https://example.com'
+    totalPages: 100,
+    link: 'https://example.com',
+    createdAt: date,
+    updatedAt: date
   }
 ];
 
@@ -26,7 +31,10 @@ const multiRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 1000,
-    link: 'https://example.com'
+    totalPages: 200,
+    link: 'https://example.com',
+    createdAt: date,
+    updatedAt: date
   },
   {
     id: '2',
@@ -35,7 +43,10 @@ const multiRowData: FetchOutputData = [
     type: 'Kindle',
     userId: 'xxxx',
     price: 99999,
-    link: 'https://example.com'
+    totalPages: 55555,
+    link: 'https://example.com',
+    createdAt: date,
+    updatedAt: date
   }
 ];
 

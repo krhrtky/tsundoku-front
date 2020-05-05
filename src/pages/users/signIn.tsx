@@ -38,8 +38,8 @@ const SignIn: React.FC<Props> = ({ signInSuccessUrl = '/' }) => {
         return firebase
           .auth()
           .signInWithCredential(cred)
-          .then(() => {
-            router.push('/');
+          .then(async () => {
+            await router.push('/');
           });
       }
     }

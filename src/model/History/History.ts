@@ -21,6 +21,10 @@ export class History {
   }
 
   static create(bookId: BookId, readedPage: ReadedPage): History {
-    return new History(bookId, readedPage, new ReadDateTime(DateTime.now()));
+    return new History(
+      bookId,
+      readedPage,
+      new ReadDateTime(DateTime.now().toDate())
+    );
   }
 }

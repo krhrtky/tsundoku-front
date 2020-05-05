@@ -56,6 +56,11 @@ export const List: React.FC<Props> = ({ books, onEdit, onDelete }: Props) => (
           </TableCell>
           <TableCell align="center">
             <Typography variant="subtitle1" color="textSecondary">
+              TotalPages
+            </Typography>
+          </TableCell>
+          <TableCell align="center">
+            <Typography variant="subtitle1" color="textSecondary">
               Link
             </Typography>
           </TableCell>
@@ -84,6 +89,11 @@ export const List: React.FC<Props> = ({ books, onEdit, onDelete }: Props) => (
             <TableCell align="right">
               <Typography variant="subtitle1" color="textSecondary">
                 {Formatter.Price.format(row.price)}
+              </Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography variant="subtitle1" color="textSecondary">
+                {row.totalPages}
               </Typography>
             </TableCell>
             <TableCell align="left" size="small" padding="none">

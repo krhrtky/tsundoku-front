@@ -1,6 +1,17 @@
 import { History } from '@/model/History';
 import { Id as UserId } from '@/model/User';
-import { Id, Name, Link, Price, Status, Statuses, Type } from './vo';
+import {
+  Id,
+  Name,
+  Link,
+  Price,
+  Status,
+  Statuses,
+  Type,
+  TotalPages,
+  CreatedAt,
+  UpdatedAt
+} from './vo';
 import { ReadedPage } from '../History/ReadedPage';
 import { UUID } from '@/libs/UUID';
 
@@ -11,7 +22,10 @@ export class Book {
   readonly type: Type;
   readonly link: Link;
   readonly price: Price;
+  readonly totalPages: TotalPages;
   readonly userId: UserId;
+  readonly createdAt: CreatedAt;
+  readonly updatedAt: UpdatedAt;
 
   constructor(
     id: Id,
@@ -20,7 +34,10 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    totalPages: TotalPages,
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ) {
     this.id = id;
     this.name = name;
@@ -28,7 +45,10 @@ export class Book {
     this.type = type;
     this.link = link;
     this.price = price;
+    this.totalPages = totalPages;
     this.userId = userId;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
   static stock(
@@ -36,7 +56,10 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    totalPages: TotalPages,
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ): Book {
     return new Book(
       new Id(UUID.random()),
@@ -45,7 +68,10 @@ export class Book {
       type,
       link,
       price,
-      userId
+      totalPages,
+      userId,
+      createdAt,
+      updatedAt
     );
   }
 
@@ -54,7 +80,10 @@ export class Book {
     type: Type,
     link: Link,
     price: Price,
-    userId: UserId
+    totalPages: TotalPages,
+    userId: UserId,
+    createdAt: CreatedAt,
+    updatedAt: UpdatedAt
   ): Book {
     return new Book(
       new Id(UUID.random()),
@@ -63,7 +92,10 @@ export class Book {
       type,
       link,
       price,
-      userId
+      totalPages,
+      userId,
+      createdAt,
+      updatedAt
     );
   }
 
@@ -75,7 +107,10 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.totalPages,
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 
@@ -87,7 +122,10 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.totalPages,
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 
@@ -99,7 +137,10 @@ export class Book {
       this.type,
       this.link,
       this.price,
-      this.userId
+      this.totalPages,
+      this.userId,
+      this.createdAt,
+      this.updatedAt
     );
   }
 

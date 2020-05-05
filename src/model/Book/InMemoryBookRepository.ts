@@ -1,7 +1,6 @@
 import { right } from 'fp-ts/lib/Either';
 import { UUID } from '@/libs/UUID';
-import { Status, Type } from '.';
-import { BookRepository, UpdateResult } from './BookRepository';
+import { BookRepository, OutputDate, UpdateResult } from './BookRepository';
 import { RegisterInputData } from '@/usecase/book/Register';
 import { useBooksContext } from '@/components/context';
 import { UpdateInputData } from '@/usecase/book/Update';
@@ -12,22 +11,18 @@ export class InMemoryBookRepository implements BookRepository {
   private readonly context = useBooksContext();
 
   async save(newBook: RegisterInputData): Promise<UpdateResult> {
+    const now = new Date();
     this.context.action.register({
       id: UUID.random(),
+      createdAt: now,
+      updatedAt: now,
       ...newBook
     });
 
     return right(null);
   }
 
-  all(): ReadonlyArray<{
-    id: string;
-    name: string;
-    status: Status;
-    type: Type;
-    link: string;
-    userId: string;
-  }> {
+  all(): OutputDate {
     return this.context.state.books;
   }
 
@@ -41,18 +36,7 @@ export class InMemoryBookRepository implements BookRepository {
     return right(null);
   }
 
-  async findByUserId(
-    _: UserId
-  ): Promise<
-    ReadonlyArray<{
-      id: string;
-      name: string;
-      status: Status;
-      type: Type;
-      link: string;
-      userId: string;
-    }>
-  > {
+  async findByUserId(_: UserId): Promise<OutputDate> {
     return this.context.state.books;
   }
 }

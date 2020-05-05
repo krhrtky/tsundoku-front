@@ -19,6 +19,7 @@ type InitialValues = {
   type: Type;
   status: Status;
   price: number;
+  totalPages: number;
   link: string;
 };
 
@@ -29,7 +30,14 @@ const validationSchema = yup.object({
     .required(),
   type: yup.mixed<Type>().oneOf(selectableType),
   status: yup.mixed<Status>().oneOf(selectableStatus),
-  price: yup.number().required(),
+  price: yup
+    .number()
+    .min(1)
+    .required(),
+  totalPages: yup
+    .number()
+    .min(1)
+    .required(),
   link: yup
     .string()
     .url()
@@ -113,6 +121,17 @@ export const EditForm: React.FC<Props> = ({
               <InputAdornment position="start">&yen;</InputAdornment>
             )
           }}
+        />
+      </FormControl>
+      <FormControl fullWidth>
+        <TextField
+          fullWidth
+          error={errors.totalPages != null}
+          id="totalPages"
+          label="TotalPages"
+          value={values.totalPages}
+          helperText={errors.totalPages}
+          onChange={handleChange}
         />
       </FormControl>
       <FormControl fullWidth>

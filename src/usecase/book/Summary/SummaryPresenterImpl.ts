@@ -2,8 +2,20 @@ import { pipe } from 'fp-ts/lib/pipeable';
 import { map, filter } from 'fp-ts/lib/ReadonlyArray';
 import { SummaryPresenter } from './SummaryPresenter';
 import { SummaryOutPutData } from '@/usecase/book/Summary/SummaryOutPutData';
-import { Book, Id, Link, Name, Price, Status, Type } from '@/model/Book';
+import {
+  Book,
+  Id,
+  Link,
+  Name,
+  Price,
+  Status,
+  Type,
+  CreatedAt,
+  UpdatedAt,
+  TotalPages
+} from '@/model/Book';
 import { Id as UserId } from '@/model/User';
+import { DateTime } from '@/libs/DateTime';
 
 const length: (l: ReadonlyArray<Book>) => number = l => l.length;
 
@@ -16,7 +28,10 @@ export class SummaryPresenterImpl implements SummaryPresenter {
       type: Type;
       link: string;
       price: number;
+      totalPages: number;
       userId: string;
+      createdAt: Date;
+      updatedAt: Date;
     }>
   ): SummaryOutPutData {
     const list = pipe(
@@ -30,7 +45,10 @@ export class SummaryPresenterImpl implements SummaryPresenter {
             item.type,
             new Link(item.link),
             new Price(item.price),
-            new UserId(item.userId)
+            new TotalPages(item.totalPages),
+            new UserId(item.userId),
+            new CreatedAt(DateTime.fromDate(item.createdAt)),
+            new UpdatedAt(DateTime.fromDate(item.updatedAt))
           )
       )
     );
