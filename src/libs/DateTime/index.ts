@@ -1,7 +1,19 @@
-import dayjs from 'dayjs';
-
 export class DateTime {
-  static now(): Date {
-    return dayjs().toDate();
+  private readonly value: Date;
+
+  private constructor(value: Date) {
+    this.value = value;
+  }
+
+  static now(): DateTime {
+    return new DateTime(new Date());
+  }
+
+  static fromDate(date: Date) {
+    return new DateTime(date);
+  }
+
+  toDate(): Date {
+    return this.value;
   }
 }
