@@ -1,4 +1,6 @@
 export { Book } from './Book';
+import { BookValue as Value } from './Book';
+export type BookValue = Value;
 export {
   Id,
   Name,

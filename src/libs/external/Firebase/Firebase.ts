@@ -2,10 +2,16 @@ import * as firebase from 'firebase/app';
 import 'firebase/performance';
 import 'firebase/auth';
 import getConfig from 'next/config';
+import { pipe } from 'fp-ts/lib/pipeable';
+import { fromNullable, getOrElse, map } from 'fp-ts/lib/Option';
 
-const {
-  publicRuntimeConfig: { firebaseConfig }
-} = getConfig();
+const firebaseConfig = pipe(
+  getConfig(),
+  fromNullable,
+  map(nextConfig => nextConfig.publicRuntimeConfig),
+  map(publicRuntimeConfig => publicRuntimeConfig.firebaseConfig),
+  getOrElse(() => ({}))
+);
 
 const isUnavailable = () =>
   Object.values(firebaseConfig).find(value => value != null) == null;
