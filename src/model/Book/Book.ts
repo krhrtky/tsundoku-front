@@ -15,6 +15,19 @@ import {
 import { ReadedPage } from '../History/ReadedPage';
 import { UUID } from '@/libs/UUID';
 
+export type BookValue = {
+  id: string;
+  name: string;
+  status: Status;
+  type: Type;
+  link: string;
+  price: number;
+  totalPages: number;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export class Book {
   readonly id: Id;
   readonly name: Name;
@@ -162,5 +175,20 @@ export class Book {
 
   isOver(): boolean {
     return this.status === Statuses.Over;
+  }
+
+  values(): BookValue {
+    return {
+      id: this.id.value,
+      name: this.name.value,
+      status: this.status,
+      type: this.type,
+      link: this.link.value,
+      price: this.price.value,
+      totalPages: this.totalPages.value,
+      userId: this.userId.value,
+      createdAt: this.createdAt.value.toDate(),
+      updatedAt: this.updatedAt.value.toDate()
+    };
   }
 }
